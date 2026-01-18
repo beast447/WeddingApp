@@ -41,7 +41,7 @@ export default function Home() {
           </h1>
 
           {/* Date */}
-          <div className="mb-8 animate-fade-in-up">
+          <div className="mb-8">
             <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-sage-700 mb-2">
               August 1st, 2026
             </p>
@@ -61,7 +61,6 @@ export default function Home() {
           </div>
 
           {/* CTA Button */}
-          <div className="animate-fade-in-up" style={{ animationDelay: '1000ms' }}>
             <Link
               to="/rsvp"
               className="inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
@@ -72,13 +71,11 @@ export default function Home() {
               </svg>
             </Link>
           </div>
-
-        </div>
       </section>
 
       {/* Photo Gallery Section */}
       <PhotoGallery />
-
+      
       {/* Details Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
