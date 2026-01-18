@@ -47,7 +47,7 @@ export default function CountdownTimer() {
       {timeUnits.map((unit, index) => (
         <div 
           key={unit.label}
-          className="flex flex-col items-center animate-fade-in-up"
+          className="flex flex-col items-center"
           style={{ animationDelay: `${index * 150}ms` }}
         >
           <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-sage-200/50 flex items-center justify-center">
