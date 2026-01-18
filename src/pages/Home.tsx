@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
 import PhotoGallery from '../components/PhotoGallery'
+import eightyFour from '../assets/eighty-four.png'
 
 export default function Home() {
   return (
@@ -92,10 +93,8 @@ export default function Home() {
           <div className="bg-gradient-to-br from-cream-50 to-sage-50 rounded-2xl p-8 shadow-lg border border-sage-100">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               {/* Venue Icon */}
-              <div className="w-20 h-20 bg-sage-100 rounded-full flex items-center justify-center">
-                <svg className="w-10 h-10 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+              <div className="bg-sage-100 flex items-center justify-center">
+                <img src={eightyFour} alt="A picture of the Eighty Four"/>
               </div>
               
               {/* Venue Details */}
