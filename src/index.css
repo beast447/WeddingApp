@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  
+  /* Wedding color palette - elegant dusty blue (lighter tint) */
+  --color-sage-50: #f7f9fc;
+  --color-sage-100: #edf2f7;
+  --color-sage-200: #d4e1ed;
+  --color-sage-300: #b8cfe0;
+  --color-sage-400: #9bbcd4;
+  --color-sage-500: #88AAC8;
+  --color-sage-600: #6a94b4;
+  --color-sage-700: #567d9a;
+  --color-sage-800: #476780;
+  --color-sage-900: #3a5469;
+  
+  --color-rose-50: #fdf6f6;
+  --color-rose-100: #fceaea;
+  --color-rose-200: #f9d5d5;
+  --color-rose-300: #f3b3b3;
+  --color-rose-400: #e98b8b;
+  --color-rose-500: #db6565;
+  --color-rose-600: #c74545;
+  --color-rose-700: #a73636;
+  --color-rose-800: #8b3030;
+  --color-rose-900: #752d2d;
+  
+  --color-cream-50: #fefdfb;
+  --color-cream-100: #fcf9f3;
+  --color-cream-200: #f8f1e4;
+  --color-cream-300: #f2e5cf;
+  --color-cream-400: #e9d4b3;
+  --color-cream-500: #dfc297;
+  
+  --color-gold-400: #d4a855;
+  --color-gold-500: #c49a38;
+  --color-gold-600: #a67f2a;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-50);
+  color: var(--color-sage-900);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage-400);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
