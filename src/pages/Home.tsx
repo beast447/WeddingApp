@@ -112,7 +112,7 @@ export default function Home() {
             <p className="text-sage-500 mb-4">More details coming soon!</p>
             <Link
               to="/rsvp"
-              className="inline-flex items-center gap-2 text-sage-700 hover:text-sage-900 font-medium transition-colors"
+              className="border-solid border-blue inline-flex items-center gap-2 text-sage-700 hover:text-sage-900 font-medium transition-colors"
             >
               <span>Let us know if you can make it</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
