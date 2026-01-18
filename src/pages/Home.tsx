@@ -18,30 +18,30 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 text-center px-4 pt-20 pb-12 max-w-4xl mx-auto">
           {/* Decorative top flourish */}
-          <div className="flex justify-center mb-6 animate-fade-in">
+          <div className="flex justify-center mb-6">
             <svg className="w-24 h-8 text-gold-500" viewBox="0 0 100 30" fill="currentColor">
               <path d="M0 15 Q25 0 50 15 Q75 30 100 15" stroke="currentColor" strokeWidth="1" fill="none"/>
             </svg>
           </div>
 
           {/* Save the Date text */}
-          <p className="text-sage-600 uppercase tracking-[0.3em] text-sm font-medium mb-4 animate-fade-in-up">
+          <p className="text-sage-600 uppercase tracking-[0.3em] text-sm font-medium mb-4">
             Save the Date
           </p>
 
           {/* Names */}
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-2 animate-fade-in-up animation-delay-200">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-2">
             Trevor
           </h1>
-          <p className="font-serif text-3xl sm:text-4xl md:text-5xl text-gold-500 my-4 animate-fade-in-up animation-delay-400">
+          <p className="font-serif text-3xl sm:text-4xl md:text-5xl text-gold-500 my-4">
             &
           </p>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-8 animate-fade-in-up animation-delay-600">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-8">
             Stephanie
           </h1>
 
           {/* Date */}
-          <div className="mb-8 animate-fade-in-up animation-delay-800">
+          <div className="mb-8 animate-fade-in-up">
             <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-sage-700 mb-2">
               August 1st, 2026
             </p>
