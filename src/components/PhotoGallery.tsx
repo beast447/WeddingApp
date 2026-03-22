@@ -1,30 +1,34 @@
+import ring from '../assets/ring.jpeg'
+import cake from '../assets/cake.jpeg'
+import christmas from '../assets/christmas.jpeg'
+import boston from '../assets/boston.jpeg'
+
 interface Photo {
   id: number
   src: string
   alt: string
 }
 
-// Placeholder photos - replace with actual couple photos
 const photos: Photo[] = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop',
-    alt: 'Couple photo 1',
+    src: `${ring}`,
+    alt: 'A picture of the egangement ring',
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop',
-    alt: 'Couple photo 2',
+    src: `${cake}`,
+    alt: 'A picture of the couple holding a gingerbread house',
   },
   {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&h=600&fit=crop',
-    alt: 'Couple photo 3',
+    src: `${christmas}`,
+    alt: 'A picture of the couple at christmas holding a cookbook',
   },
   {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop',
-    alt: 'Couple photo 4',
+    src: `${boston}`,
+    alt: 'A picture of the couple in boston',
   },
 ]
 
