@@ -60,7 +60,7 @@ function ManagementDashboard() {
     const matchesSearch =
       searchTerm === '' ||
       rsvp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rsvp.email.toLowerCase().includes(searchTerm.toLowerCase())
+      rsvp.address.toLowerCase().includes(searchTerm.toLowerCase())
 
     return matchesFilter && matchesSearch
   })
@@ -215,7 +215,7 @@ function ManagementDashboard() {
               </svg>
               <input
                 type="text"
-                placeholder="Search by name or email..."
+                placeholder="Search by name or address..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
