@@ -290,7 +290,7 @@ function ManagementDashboard() {
                       Status
                     </th>
                     <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
-                      Allergies
+                      Address
                     </th>
                     <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
                       Questions
@@ -309,7 +309,6 @@ function ManagementDashboard() {
                       <td className="px-6 py-4">
                         <div>
                           <p className="font-medium text-sage-800">{rsvp.name}</p>
-                          <p className="text-sm text-sage-500">{rsvp.email}</p>
                         </div>
                       </td>
                       <td className="px-6 py-4">
@@ -329,12 +328,12 @@ function ManagementDashboard() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 text-sm max-w-xs truncate">
-                          {rsvp.allergies || '—'}
+                        <p className="text-sage-600 text-sm max-w-xs text-wrap">
+                          {rsvp.address || '—'}
                         </p>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 text-sm max-w-xs truncate">
+                        <p className="text-sage-600 text-sm max-w-xs text-wrap">
                           {rsvp.questions || '—'}
                         </p>
                       </td>
