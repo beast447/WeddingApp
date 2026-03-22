@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 interface FormData {
   name: string
-  email: string
+  address: string
   attending: string
   allergies: string
   drinker: string
@@ -15,7 +15,7 @@ interface FormData {
 export default function RSVPForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
+    address: '',
     attending: '',
     allergies: '',
     drinker: '',
@@ -46,7 +46,7 @@ export default function RSVPForm() {
       setSubmitted(true)
     } catch (err) {
       console.error('Error submitting RSVP:', err)
-      setError('There was an error submitting your RSVP. Please try again.')
+      setError('There was an error submitting your form. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -117,10 +117,10 @@ export default function RSVPForm() {
             We hope you can join us
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 mb-4">
-            RSVP
+            Enter your name and address to recieve a formal invitation
           </h1>
           <p className="text-sage-600 max-w-md mx-auto">
-            Please fill out the form below to let us know if you'll be celebrating with us.
+            Thank You!  
           </p>
         </div>
 
@@ -149,27 +149,30 @@ export default function RSVPForm() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
-                placeholder="Enter your full name"
+                placeholder="John Wick"
               />
             </div>
 
             {/* Email Field */}
             <div>
               <label
-                htmlFor="email"
+                htmlFor="Address"
                 className="block text-sm font-medium text-sage-700 mb-2"
               >
-                Email Address <span className="text-rose-500">*</span>
+                Mailing Address <span className="text-rose-500">*</span>
               </label>
+              <p>
+                Street address, City, State, Zip code
+              </p>
               <input
-                type="email"
-                id="email"
-                name="email"
+                type="text"
+                id="address"
+                name="address"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
-                placeholder="Enter your email address"
+                placeholder="12200 Foxridge Ln, APT C, Blacksburg, VA, 24060"
               />
             </div>
 
@@ -314,7 +317,7 @@ export default function RSVPForm() {
                 </>
               ) : (
                 <>
-                  <span>Submit RSVP</span>
+                  <span>Submit Response</span>
                   <svg
                     className="w-5 h-5"
                     fill="none"

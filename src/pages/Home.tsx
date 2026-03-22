@@ -66,7 +66,7 @@ export default function Home() {
               to="/rsvp"
               className="inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <span>RSVP Now</span>
+              <span>Enter address to recieve a formal invite</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -114,7 +114,7 @@ export default function Home() {
               to="/rsvp"
               className="border-solid border-blue inline-flex items-center gap-2 text-sage-700 hover:text-sage-900 font-medium transition-colors"
             >
-              <span>Let us know if you can make it</span>
+              <span>Enter address to recieve a formal invite</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
