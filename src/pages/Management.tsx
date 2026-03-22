@@ -7,7 +7,7 @@ import ProtectedRoute from '../components/ProtectedRoute'
 interface RSVP {
   id: string
   name: string
-  email: string
+  address: string
   attending: boolean
   allergies: string
   questions: string

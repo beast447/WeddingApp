@@ -153,7 +153,7 @@ export default function RSVPForm() {
               />
             </div>
 
-            {/* Email Field */}
+            {/* Address Field */}
             <div>
               <label
                 htmlFor="Address"
@@ -168,7 +168,7 @@ export default function RSVPForm() {
                 type="text"
                 id="address"
                 name="address"
-                value={formData.email}
+                value={formData.address}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
