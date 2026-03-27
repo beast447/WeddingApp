@@ -20,11 +20,6 @@ interface RSVP {
   submittedAt: Timestamp | null;
 }
 
-interface Addresses {
-  name: string;
-  address: string;
-}
-
 function ManagementDashboard() {
   const [rsvps, setRsvps] = useState<RSVP[]>([]);
   const [loading, setLoading] = useState(true);
