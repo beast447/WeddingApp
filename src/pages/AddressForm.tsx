@@ -51,7 +51,7 @@ export default function AddressForm() {
               htmlFor="name"
               className="block text-lg font-medium text-sage-700 mb-2 mt-10"
             >
-              Name
+              Full Name
             </label>
             <input
               type="text"
