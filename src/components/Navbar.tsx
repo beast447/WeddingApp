@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path
+  const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/rsvp', label: 'form' },
-  ]
+    { path: "/", label: "Home" },
+    { path: "/address", label: "form" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-sage-200/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="font-serif text-2xl font-medium text-sage-800 hover:text-sage-600 transition-colors"
           >
             T <span className="text-gold-500">&</span> S
@@ -32,8 +32,8 @@ export default function Navbar() {
                 to={link.path}
                 className={`text-sm font-medium tracking-wide uppercase transition-colors ${
                   isActive(link.path)
-                    ? 'text-sage-700 border-b-2 border-gold-500 pb-1'
-                    : 'text-sage-600 hover:text-sage-800'
+                    ? "text-sage-700 border-b-2 border-gold-500 pb-1"
+                    : "text-sage-600 hover:text-sage-800"
                 }`}
               >
                 {link.label}
@@ -83,8 +83,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`text-sm font-medium tracking-wide uppercase transition-colors ${
                     isActive(link.path)
-                      ? 'text-sage-700'
-                      : 'text-sage-600 hover:text-sage-800'
+                      ? "text-sage-700"
+                      : "text-sage-600 hover:text-sage-800"
                   }`}
                 >
                   {link.label}
@@ -95,5 +95,5 @@ export default function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }

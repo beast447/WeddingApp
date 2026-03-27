@@ -1,86 +1,99 @@
-import { useState, useEffect } from 'react'
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore'
-import { signOut } from 'firebase/auth'
-import { db, auth } from '../lib/firebase'
-import ProtectedRoute from '../components/ProtectedRoute'
+import { useState, useEffect } from "react";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  Timestamp,
+} from "firebase/firestore";
+import { signOut } from "firebase/auth";
+import { db, auth } from "../lib/firebase";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 interface RSVP {
-  id: string
-  name: string
-  address: string
-  attending: boolean
-  allergies: string
-  questions: string
-  submittedAt: Timestamp | null
+  id: string;
+  name: string;
+  address: string;
+  attending: boolean;
+  allergies: string;
+  questions: string;
+  submittedAt: Timestamp | null;
+}
+
+interface Addresses {
+  name: string;
+  address: string;
 }
 
 function ManagementDashboard() {
-  const [rsvps, setRsvps] = useState<RSVP[]>([])
-  const [loading, setLoading] = useState(true)
-  const [filter, setFilter] = useState<'all' | 'attending' | 'not-attending'>('all')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [rsvps, setRsvps] = useState<RSVP[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<"all" | "attending" | "not-attending">(
+    "all",
+  );
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetchRSVPs()
-  }, [])
+    fetchRSVPs();
+  }, []);
 
   const fetchRSVPs = async () => {
     try {
       const rsvpQuery = query(
-        collection(db, 'rsvps'),
-        orderBy('submittedAt', 'desc')
-      )
-      const snapshot = await getDocs(rsvpQuery)
+        collection(db, "rsvps"),
+        orderBy("submittedAt", "desc"),
+      );
+      const snapshot = await getDocs(rsvpQuery);
       const rsvpData: RSVP[] = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as RSVP[]
-      setRsvps(rsvpData)
+      })) as RSVP[];
+      setRsvps(rsvpData);
     } catch (error) {
-      console.error('Error fetching RSVPs:', error)
+      console.error("Error fetching RSVPs:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
-      await signOut(auth)
+      await signOut(auth);
     } catch (error) {
-      console.error('Error signing out:', error)
+      console.error("Error signing out:", error);
     }
-  }
+  };
 
   const filteredRSVPs = rsvps.filter((rsvp) => {
     const matchesFilter =
-      filter === 'all' ||
-      (filter === 'attending' && rsvp.attending) ||
-      (filter === 'not-attending' && !rsvp.attending)
+      filter === "all" ||
+      (filter === "attending" && rsvp.attending) ||
+      (filter === "not-attending" && !rsvp.attending);
 
     const matchesSearch =
-      searchTerm === '' ||
+      searchTerm === "" ||
       rsvp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rsvp.address.toLowerCase().includes(searchTerm.toLowerCase())
+      rsvp.address.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesFilter && matchesSearch
-  })
+    return matchesFilter && matchesSearch;
+  });
 
   const stats = {
     total: rsvps.length,
     attending: rsvps.filter((r) => r.attending).length,
     notAttending: rsvps.filter((r) => !r.attending).length,
-  }
+  };
 
   const formatDate = (timestamp: Timestamp | null) => {
-    if (!timestamp) return 'N/A'
-    return timestamp.toDate().toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  }
+    if (!timestamp) return "N/A";
+    return timestamp.toDate().toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 py-24">
@@ -137,7 +150,9 @@ function ManagementDashboard() {
               </div>
               <div>
                 <p className="text-sage-500 text-sm">Total Responses</p>
-                <p className="font-serif text-3xl text-sage-800">{stats.total}</p>
+                <p className="font-serif text-3xl text-sage-800">
+                  {stats.total}
+                </p>
               </div>
             </div>
           </div>
@@ -225,19 +240,21 @@ function ManagementDashboard() {
             {/* Filter buttons */}
             <div className="flex gap-2">
               {[
-                { value: 'all', label: 'All' },
-                { value: 'attending', label: 'Attending' },
-                { value: 'not-attending', label: 'Not Attending' },
+                { value: "all", label: "All" },
+                { value: "attending", label: "Attending" },
+                { value: "not-attending", label: "Not Attending" },
               ].map((option) => (
                 <button
                   key={option.value}
                   onClick={() =>
-                    setFilter(option.value as 'all' | 'attending' | 'not-attending')
+                    setFilter(
+                      option.value as "all" | "attending" | "not-attending",
+                    )
                   }
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                     filter === option.value
-                      ? 'bg-sage-600 text-white'
-                      : 'bg-cream-50 text-sage-700 hover:bg-sage-100'
+                      ? "bg-sage-600 text-white"
+                      : "bg-cream-50 text-sage-700 hover:bg-sage-100"
                   }`}
                 >
                   {option.label}
@@ -274,8 +291,8 @@ function ManagementDashboard() {
               <p className="text-lg font-medium">No RSVPs found</p>
               <p className="text-sm">
                 {searchTerm
-                  ? 'Try adjusting your search terms'
-                  : 'RSVPs will appear here once guests respond'}
+                  ? "Try adjusting your search terms"
+                  : "RSVPs will appear here once guests respond"}
               </p>
             </div>
           ) : (
@@ -308,33 +325,35 @@ function ManagementDashboard() {
                     >
                       <td className="px-6 py-4">
                         <div>
-                          <p className="font-medium text-sage-800">{rsvp.name}</p>
+                          <p className="font-medium text-sage-800">
+                            {rsvp.name}
+                          </p>
                         </div>
                       </td>
                       <td className="px-6 py-4">
                         <span
                           className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
                             rsvp.attending
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-rose-100 text-rose-700'
+                              ? "bg-green-100 text-green-700"
+                              : "bg-rose-100 text-rose-700"
                           }`}
                         >
                           <span
                             className={`w-2 h-2 rounded-full ${
-                              rsvp.attending ? 'bg-green-500' : 'bg-rose-500'
+                              rsvp.attending ? "bg-green-500" : "bg-rose-500"
                             }`}
                           />
-                          {rsvp.attending ? 'Attending' : 'Not Attending'}
+                          {rsvp.attending ? "Attending" : "Not Attending"}
                         </span>
                       </td>
                       <td className="px-6 py-4">
                         <p className="text-sage-600 text-sm max-w-xs text-wrap">
-                          {rsvp.address || '—'}
+                          {rsvp.address || "—"}
                         </p>
                       </td>
                       <td className="px-6 py-4">
                         <p className="text-sage-600 text-sm max-w-xs text-wrap">
-                          {rsvp.questions || '—'}
+                          {rsvp.questions || "—"}
                         </p>
                       </td>
                       <td className="px-6 py-4">
@@ -358,7 +377,7 @@ function ManagementDashboard() {
             className="flex items-center gap-2 px-4 py-2 text-sage-600 hover:text-sage-800 transition-colors"
           >
             <svg
-              className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`}
+              className={`w-5 h-5 ${loading ? "animate-spin" : ""}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -375,7 +394,7 @@ function ManagementDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function Management() {
@@ -383,5 +402,5 @@ export default function Management() {
     <ProtectedRoute>
       <ManagementDashboard />
     </ProtectedRoute>
-  )
+  );
 }

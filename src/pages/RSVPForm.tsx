@@ -1,56 +1,56 @@
-import { useState, FormEvent } from 'react'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
-import { db } from '../lib/firebase'
-import { Link } from 'react-router-dom'
+import { useState, FormEvent } from "react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../lib/firebase";
+import { Link } from "react-router-dom";
 
 interface FormData {
-  name: string
-  address: string
-  attending: string
-  allergies: string
-  drinker: string
-  questions: string
+  name: string;
+  address: string;
+  attending: string;
+  allergies: string;
+  drinker: string;
+  questions: string;
 }
 
 export default function RSVPForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    address: '',
-    attending: '',
-    allergies: '',
-    drinker: '',
-    questions: '',
-  })
-  const [loading, setLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState('')
+    name: "",
+    address: "",
+    attending: "",
+    allergies: "",
+    drinker: "",
+    questions: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
-      await addDoc(collection(db, 'rsvps'), {
+      await addDoc(collection(db, "rsvps"), {
         ...formData,
-        attending: formData.attending === 'yes',
+        attending: formData.attending === "yes",
         submittedAt: serverTimestamp(),
-      })
-      setSubmitted(true)
+      });
+      setSubmitted(true);
     } catch (err) {
-      console.error('Error submitting RSVP:', err)
-      setError('There was an error submitting your form. Please try again.')
+      console.error("Error submitting RSVP:", err);
+      setError("There was an error submitting your form. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   if (submitted) {
     return (
@@ -78,7 +78,7 @@ export default function RSVPForm() {
               Thank You!
             </h2>
             <p className="text-sage-600 mb-6">
-              {formData.attending === 'yes'
+              {formData.attending === "yes"
                 ? "We're so excited you'll be joining us! We can't wait to celebrate with you."
                 : "We're sorry you can't make it, but we appreciate you letting us know."}
             </p>
@@ -105,7 +105,7 @@ export default function RSVPForm() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -119,9 +119,7 @@ export default function RSVPForm() {
           <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 mb-4">
             Enter your name and address to recieve a formal invitation
           </h1>
-          <p className="text-sage-600 max-w-md mx-auto">
-            Thank You!  
-          </p>
+          <p className="text-sage-600 max-w-md mx-auto">Thank You!</p>
         </div>
 
         {/* Form Card */}
@@ -161,9 +159,7 @@ export default function RSVPForm() {
               >
                 Mailing Address <span className="text-rose-500">*</span>
               </label>
-              <p>
-                Street address, City, State, Zip code
-              </p>
+              <p>Street address, City, State, Zip code</p>
               <input
                 type="text"
                 id="address"
@@ -188,7 +184,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="attending"
                       value="yes"
-                      checked={formData.attending === 'yes'}
+                      checked={formData.attending === "yes"}
                       onChange={handleChange}
                       required
                       className="sr-only peer"
@@ -207,7 +203,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="attending"
                       value="no"
-                      checked={formData.attending === 'no'}
+                      checked={formData.attending === "no"}
                       onChange={handleChange}
                       className="sr-only peer"
                     />
@@ -224,7 +220,8 @@ export default function RSVPForm() {
             {/* Drinker Radio Buttons */}
             <div>
               <label className="block text-sm font-medium text-sage-700 mb-3">
-                Will you be drinking alcohol? <span className="text-rose-500">*</span>
+                Will you be drinking alcohol?{" "}
+                <span className="text-rose-500">*</span>
               </label>
               <div className="flex gap-4">
                 <label className="flex items-center gap-3 cursor-pointer group">
@@ -233,7 +230,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="drinker"
                       value="yes"
-                      checked={formData.drinker === 'yes'}
+                      checked={formData.drinker === "yes"}
                       onChange={handleChange}
                       required
                       className="sr-only peer"
@@ -252,7 +249,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="drinker"
                       value="no"
-                      checked={formData.drinker === 'no'}
+                      checked={formData.drinker === "no"}
                       onChange={handleChange}
                       className="sr-only peer"
                     />
@@ -361,5 +358,5 @@ export default function RSVPForm() {
         </div>
       </div>
     </div>
-  )
+  );
 }
