@@ -46,7 +46,7 @@ export default function AddressForm() {
           <h1 className="text-center text-4xl">
             Please Enter Your Full Name and Address for a Formal Invitation
           </h1>
-          <form onSubmit={formik.handleSubmit}>
+          <form autoComplete="off" onSubmit={formik.handleSubmit}>
             <label
               htmlFor="name"
               className="block text-lg font-medium text-sage-700 mb-2 mt-10"
