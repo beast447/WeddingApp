@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import Confetti from "react-confetti";
@@ -12,6 +12,10 @@ interface Values {
 export default function AddressForm() {
   const { register, handleSubmit, setValue } = useForm<Values>();
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (submitted) window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [submitted]);
 
   const onSubmit: SubmitHandler<Values> = async (data) => {
     try {
