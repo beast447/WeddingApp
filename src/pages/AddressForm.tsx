@@ -10,7 +10,7 @@ interface Values {
 }
 
 export default function AddressForm() {
-  const { register, handleSubmit } = useForm<Values>();
+  const { register, handleSubmit, setValue } = useForm<Values>();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<Values> = async (data) => {
@@ -42,6 +42,9 @@ export default function AddressForm() {
             </label>
             <input
               {...register("name", { required: true })}
+              id="name"
+              autoComplete="name"
+              onChange={(e) => setValue("name", e.target.value, { shouldValidate: true })}
               className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
               placeholder="John Wick"
             />
@@ -53,6 +56,9 @@ export default function AddressForm() {
             </label>
             <input
               {...register("address", { required: true })}
+              id="address"
+              autoComplete="street-address"
+              onChange={(e) => setValue("address", e.target.value, { shouldValidate: true })}
               className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
               placeholder="123 Address Lane, Blacksburg, VA, 24060"
             />
