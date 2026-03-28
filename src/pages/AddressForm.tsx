@@ -54,12 +54,13 @@ export default function AddressForm() {
             >
               Full Mailing Address
             </label>
-            <input
+            <textarea
               {...register("address", { required: true })}
               id="address"
               autoComplete="street-address"
               onChange={(e) => setValue("address", e.target.value, { shouldValidate: true })}
-              className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+              rows={2}
+              className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
               placeholder="123 Address Lane, Blacksburg, VA, 24060"
             />
             <div className="flex flex-col items-center">
