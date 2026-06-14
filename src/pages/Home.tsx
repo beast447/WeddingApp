@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
 import PhotoGallery from '../components/PhotoGallery'
-import eightyFour from '../assets/eighty-four.png'
+import newHarvest from 'C:\Users\wildb\OneDrive\Desktop\DEV\WeddingWEbsite\src\assets\newharvest.png'
 
 export default function Home() {
   return (
@@ -51,7 +51,7 @@ export default function Home() {
               <svg className="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              <span className="text-sm sm:text-base">The Eighty Four • Riner, Virginia</span>
+              <span className="text-sm sm:text-base">New Harvest Minitries • Willis, Virginia</span>
               <div className="w-12 h-px bg-sage-300" />
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Home() {
           </h2>
           <p className="text-sage-600 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             We are so excited to celebrate our love with you! Please save the date 
-            and join us at The Eighty Four in beautiful Riner, Virginia for an unforgettable 
+            and join us at New Harvest Minitries in beautiful Willis, Virginia for an unforgettable 
             celebration of our journey together.
           </p>
 
@@ -94,14 +94,14 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               {/* Venue Icon */}
               <div className="bg-sage-100 flex items-center justify-center">
-                <img src={eightyFour} alt="A picture of the Eighty Four"/>
+                <img src={newHarvest} alt="A picture of New Harvest Ministries"/>
               </div>
               
               {/* Venue Details */}
               <div className="text-center md:text-left">
-                <h3 className="font-serif text-2xl text-sage-800 mb-2">The Eighty Four</h3>
-                <p className="text-sage-600 mb-1">Riner, Virginia</p>
-                <p className="text-sage-600 mb-1">5178 Webbs Mill Rd N, Riner, VA 24149</p>
+                <h3 className="font-serif text-2xl text-sage-800 mb-2">New Harvest Ministries</h3>
+                <p className="text-sage-600 mb-1">Willis, Virginia</p>
+                <p className="text-sage-600 mb-1">6236 Floyd Hwy S, Willis, VA 24380</p>
                 <p className="text-sage-500 text-sm">August 1st, 2026</p>
               </div>
             </div>
@@ -110,15 +110,14 @@ export default function Home() {
           {/* RSVP reminder */}
           <div className="mt-12">
             <p className="text-sage-500 mb-4">More details coming soon!</p>
-            <Link
-              to="/rsvp"
-              className="border-solid border-blue inline-flex items-center gap-2 text-sage-700 hover:text-sage-900 font-medium transition-colors"
+            <span
+              className="inline-flex items-center gap-2 text-sage-400 font-medium cursor-not-allowed opacity-50"
             >
               <span>Let us know if you can make it</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </Link>
+            </span>
           </div>
         </div>
       </section>
