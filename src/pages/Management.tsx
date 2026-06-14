@@ -1,41 +1,23 @@
 import { useState, useEffect } from 'react'
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore'
-import { signOut } from 'firebase/auth'
-import { db, auth } from '../lib/firebase'
+import { useNavigate } from 'react-router-dom'
+import { fetchRSVPs, logout, RSVP } from '../lib/api'
 import ProtectedRoute from '../components/ProtectedRoute'
-
-interface RSVP {
-  id: string
-  name: string
-  email: string
-  attending: boolean
-  allergies: string
-  questions: string
-  submittedAt: Timestamp | null
-}
 
 function ManagementDashboard() {
   const [rsvps, setRsvps] = useState<RSVP[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'attending' | 'not-attending'>('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetchRSVPs()
+    loadRSVPs()
   }, [])
 
-  const fetchRSVPs = async () => {
+  const loadRSVPs = async () => {
     try {
-      const rsvpQuery = query(
-        collection(db, 'rsvps'),
-        orderBy('submittedAt', 'desc')
-      )
-      const snapshot = await getDocs(rsvpQuery)
-      const rsvpData: RSVP[] = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as RSVP[]
-      setRsvps(rsvpData)
+      const data = await fetchRSVPs()
+      setRsvps(data)
     } catch (error) {
       console.error('Error fetching RSVPs:', error)
     } finally {
@@ -44,11 +26,8 @@ function ManagementDashboard() {
   }
 
   const handleLogout = async () => {
-    try {
-      await signOut(auth)
-    } catch (error) {
-      console.error('Error signing out:', error)
-    }
+    await logout()
+    navigate('/admin')
   }
 
   const filteredRSVPs = rsvps.filter((rsvp) => {
@@ -71,9 +50,9 @@ function ManagementDashboard() {
     notAttending: rsvps.filter((r) => !r.attending).length,
   }
 
-  const formatDate = (timestamp: Timestamp | null) => {
+  const formatDate = (timestamp: string | null) => {
     if (!timestamp) return 'N/A'
-    return timestamp.toDate().toLocaleDateString('en-US', {
+    return new Date(timestamp).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -354,7 +333,7 @@ function ManagementDashboard() {
         {/* Refresh button */}
         <div className="flex justify-center mt-6">
           <button
-            onClick={fetchRSVPs}
+            onClick={loadRSVPs}
             disabled={loading}
             className="flex items-center gap-2 px-4 py-2 text-sage-600 hover:text-sage-800 transition-colors"
           >
