@@ -1,13 +1,13 @@
 import { useState, FormEvent } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../lib/firebase'
 import { useNavigate } from 'react-router-dom'
+import { login } from '../lib/api'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -15,7 +15,8 @@ export default function LoginForm() {
     setLoading(true)
 
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      await login(email, password)
+      navigate('/admin')
     } catch (err) {
       setError('Invalid email or password. Please try again.')
       console.error('Login error:', err)

@@ -1,7 +1,6 @@
 import { useState, FormEvent } from 'react'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
-import { db } from '../lib/firebase'
 import { Link } from 'react-router-dom'
+import { submitRSVP } from '../lib/api'
 
 interface FormData {
   name: string
@@ -38,10 +37,9 @@ export default function RSVPForm() {
     setLoading(true)
 
     try {
-      await addDoc(collection(db, 'rsvps'), {
+      await submitRSVP({
         ...formData,
         attending: formData.attending === 'yes',
-        submittedAt: serverTimestamp(),
       })
       setSubmitted(true)
     } catch (err) {
