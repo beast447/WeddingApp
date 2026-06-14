@@ -100,7 +100,7 @@ export default function Home() {
               {/* Venue Details */}
               <div className="text-center md:text-left">
                 <h3 className="font-serif text-2xl text-sage-800 mb-2">New Harvest Ministries</h3>
-                <p className="text-sage-600 mb-1">Willis, Virginia</p>
+                <p className="text-sage-600 mb-1">Willis Virginia</p>
                 <p className="text-sage-600 mb-1">6236 Floyd Hwy S, Willis, VA 24380</p>
                 <p className="text-sage-500 text-sm">August 1st, 2026</p>
               </div>
