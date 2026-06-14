@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
 import PhotoGallery from '../components/PhotoGallery'
-import newHarvest from 'C:\Users\wildb\OneDrive\Desktop\DEV\WeddingWEbsite\src\assets\newharvest.png'
+import newHarvest from '../assets/newharvest.png'
 
 export default function Home() {
   return (
