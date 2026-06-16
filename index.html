@@ -10,14 +10,15 @@
     <meta name="description" content="Join Trevor and Stephanie as they celebrate their wedding on August 1st, 2026 at New Harvest Ministries in Willis, Virginia. RSVP, schedule, travel details and more." />
     <script>
       // Apply theme before paint to avoid a flash of the wrong theme.
+      // Dark is the default; only an explicit "light" choice opts out.
       (function () {
         try {
-          var stored = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
+          if (localStorage.getItem('theme') !== 'light') {
             document.documentElement.classList.add('dark');
           }
-        } catch (e) {}
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
   </head>
