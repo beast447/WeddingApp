@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL ?? ''
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080"
 
 export function getToken(): string | null {
   return localStorage.getItem('auth_token')
@@ -32,7 +32,7 @@ export interface RSVPPayload {
   email: string
   attending: boolean
   allergies: string
-  drinker: string
+  drinker: boolean
   questions: string
 }
 
@@ -51,8 +51,9 @@ export interface RSVP {
   email: string
   attending: boolean
   allergies: string
+  drinker: boolean
   questions: string
-  submittedAt: string | null
+  submittedAt: string
 }
 
 export async function fetchRSVPs(): Promise<RSVP[]> {
