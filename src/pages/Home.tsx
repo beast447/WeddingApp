@@ -38,12 +38,12 @@ const faqs = [
     a: 'Please RSVP by July 1st, 2026 so we can finalize our headcount with the venue.',
   },
   {
-    q: 'Can I bring a guest?',
-    a: 'We love your enthusiasm! Use the RSVP form to add everyone joining you — spouses, partners, and children all welcome.',
+    q: 'Can I bring a plus-one?',
+    a: 'Plus-ones are approved on a case-by-case basis. If you’d like to bring one, add them in the guests section when you RSVP — we’ll send a confirmation to the email you signed up with no later than July 7th.',
   },
   {
     q: 'Are children welcome?',
-    a: 'Absolutely. Little ones are part of the family — just add them as guests when you RSVP.',
+    a: 'Yes! Children are warmly welcome — just add them as guests when you RSVP.',
   },
   {
     q: 'What should I wear?',

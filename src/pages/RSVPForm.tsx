@@ -303,7 +303,9 @@ export default function RSVPForm() {
                   Additional Guests
                 </label>
                 <p className="text-sage-500 dark:text-sage-400 text-sm mb-3">
-                  Add anyone joining you (spouse, partner, children).
+                  Add anyone joining you. Children are welcome. Plus-ones are
+                  approved case-by-case — we’ll confirm by July 7th to the email
+                  you provided above.
                 </p>
 
                 {additionalGuests.length > 0 && (
@@ -352,17 +354,38 @@ export default function RSVPForm() {
                           </button>
                         </div>
                         {!guest.isChild && (
-                          <label className="flex items-center gap-2 text-sm text-sage-700 dark:text-sage-300 cursor-pointer sm:ml-1">
-                            <input
-                              type="checkbox"
-                              checked={guest.drinker}
-                              onChange={(e) =>
-                                updateGuest(index, { drinker: e.target.checked })
-                              }
-                              className="w-4 h-4 rounded border-sage-300 text-sage-600 focus:ring-sage-400"
-                            />
-                            <span>Drinks alcohol</span>
-                          </label>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updateGuest(index, { drinker: !guest.drinker })
+                            }
+                            aria-pressed={guest.drinker}
+                            title={
+                              guest.drinker
+                                ? 'Drinks alcohol'
+                                : 'Does not drink alcohol'
+                            }
+                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-colors sm:ml-1 ${
+                              guest.drinker
+                                ? 'bg-amber-100 border-amber-300 text-amber-700 dark:bg-amber-500/15 dark:border-amber-500/40 dark:text-amber-300'
+                                : 'bg-cream-50 border-sage-200 text-sage-400 dark:bg-night-700 dark:border-night-600 dark:text-sage-500'
+                            }`}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 22h8M12 15v7M5 3h14l-6 9H11L5 3z"
+                              />
+                            </svg>
+                            <span>Drinks</span>
+                          </button>
                         )}
                         <button
                           type="button"
