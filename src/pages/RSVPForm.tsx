@@ -355,8 +355,8 @@ export default function RSVPForm() {
                         </div>
                         {!guest.isChild && (
                           <div className="flex items-center gap-2 sm:ml-1">
-                            <span className="text-sm text-sage-500 dark:text-sage-400 whitespace-nowrap">
-                              Alcohol?
+                            <span className="text-sm text-sage-500 dark:text-sage-400">
+                              Is this guest going to want to drink?
                             </span>
                             <div className="flex gap-1 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg p-1">
                               <button
