@@ -17,11 +17,11 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link 
-            to="/" 
-            className="font-serif text-2xl font-medium text-sage-800 hover:text-sage-600 transition-colors"
+          <Link
+            to="/"
+            className="font-serif text-2xl font-medium text-sage-800 hover:text-sage-600 transition-colors tracking-wide"
           >
-            T <span className="text-gold-500">&</span> S
+            T <span className="font-script text-3xl text-gold-gradient align-middle">&</span> S
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,9 +1,10 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
 @theme {
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-script: 'Great Vibes', cursive;
   
   /* Wedding color palette - elegant dusty blue (lighter tint) */
   --color-sage-50: #f7f9fc;
@@ -41,14 +42,102 @@
 }
 
 /* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-cream-50);
   color: var(--color-sage-900);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: #fff;
+}
+
+/* Elegant keyboard focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* Script accent font */
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Shimmering gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-gold-600),
+    var(--color-gold-400),
+    #f3e3b8,
+    var(--color-gold-400),
+    var(--color-gold-600)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Subtle lift on hover for cards */
+.hover-lift {
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(71, 103, 128, 0.35);
+}
+
+/* Sweeping shine for primary buttons */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+.btn-shine:hover::after {
+  left: 150%;
+}
+
+/* Thin gold rule used to flank section headings */
+.rule-gold {
+  height: 1px;
+  width: 4rem;
+  background: linear-gradient(to right, transparent, var(--color-gold-400));
+}
+.rule-gold-rev {
+  height: 1px;
+  width: 4rem;
+  background: linear-gradient(to left, transparent, var(--color-gold-400));
 }
 
 /* Custom scrollbar */
@@ -96,6 +185,38 @@ h1, h2, h3, h4, h5, h6 {
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 16s ease infinite;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

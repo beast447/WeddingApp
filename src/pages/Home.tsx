@@ -9,7 +9,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-sage-50 to-rose-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-sage-50 to-rose-50 animate-gradient" />
         
         {/* Decorative elements */}
         <div className="absolute top-20 left-10 w-64 h-64 bg-sage-200/30 rounded-full blur-3xl" />
@@ -31,13 +31,13 @@ export default function Home() {
           </p>
 
           {/* Names */}
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-2">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-2 tracking-wide drop-shadow-sm">
             Trevor
           </h1>
-          <p className="font-serif text-3xl sm:text-4xl md:text-5xl text-gold-500 my-4">
+          <p className="font-script text-6xl sm:text-7xl md:text-8xl text-gold-gradient leading-none my-1">
             &
           </p>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-8">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-8 tracking-wide drop-shadow-sm">
             Stephanie
           </h1>
 
@@ -64,7 +64,7 @@ export default function Home() {
           {/* CTA Button */}
             <Link
               to="/rsvp"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="btn-shine inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <span>RSVP Now</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,9 +80,19 @@ export default function Home() {
       {/* Details Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 mb-6">
+          <p className="font-script text-3xl text-gold-gradient mb-1">
+            with joy
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 mb-4">
             Join Us for Our Special Day
           </h2>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="rule-gold" />
+            <svg className="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <div className="rule-gold-rev" />
+          </div>
           <p className="text-sage-600 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             We are so excited to celebrate our love with you! Please save the date 
             and join us at New Harvest Minitries in beautiful Willis, Virginia for an unforgettable 
@@ -90,11 +100,15 @@ export default function Home() {
           </p>
 
           {/* Venue Card */}
-          <div className="bg-gradient-to-br from-cream-50 to-sage-50 rounded-2xl p-8 shadow-lg border border-sage-100">
+          <div className="hover-lift bg-gradient-to-br from-cream-50 to-sage-50 rounded-2xl p-8 shadow-lg border border-sage-100">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               {/* Venue Icon */}
-              <div className="bg-sage-100 flex items-center justify-center">
-                <img src={newHarvest} alt="A picture of New Harvest Ministries"/>
+              <div className="overflow-hidden rounded-xl shadow-md ring-1 ring-sage-200/60 shrink-0">
+                <img
+                  src={newHarvest}
+                  alt="A picture of New Harvest Ministries"
+                  className="w-full md:w-64 h-48 object-cover transition-transform duration-500 hover:scale-105"
+                />
               </div>
               
               {/* Venue Details */}
@@ -123,9 +137,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 bg-sage-800 text-center">
-        <p className="font-serif text-xl text-cream-100 mb-2">
-          Trevor & Stephanie
+      <footer className="py-10 px-4 bg-gradient-to-b from-sage-800 to-sage-900 text-center">
+        <p className="font-script text-4xl text-cream-100 mb-1">
+          Trevor &amp; Stephanie
         </p>
         <p className="text-sage-400 text-sm">
           August 1st, 2026 • Floyd, Virginia

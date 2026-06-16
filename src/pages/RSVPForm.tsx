@@ -77,9 +77,10 @@ export default function RSVPForm() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 pt-20">
         <div className="max-w-md w-full text-center">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-sage-200/50 p-8 animate-fade-in-up">
+          <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-8 animate-fade-in-up">
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
             {/* Success Icon */}
-            <div className="w-20 h-20 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-gradient-to-br from-sage-100 to-sage-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
               <svg
                 className="w-10 h-10 text-sage-600"
                 fill="none"
@@ -95,6 +96,9 @@ export default function RSVPForm() {
               </svg>
             </div>
 
+            <p className="font-script text-3xl text-gold-gradient mb-0">
+              merci
+            </p>
             <h2 className="font-serif text-3xl text-sage-800 mb-4">
               Thank You!
             </h2>
@@ -134,19 +138,27 @@ export default function RSVPForm() {
       <div className="max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">
-          <p className="text-sage-600 uppercase tracking-[0.2em] text-sm font-medium mb-2">
+          <p className="font-script text-4xl text-gold-gradient mb-1">
             We hope you can join us
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 mb-4">
+          <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 mb-3 tracking-wide">
             RSVP
           </h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="rule-gold" />
+            <svg className="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <div className="rule-gold-rev" />
+          </div>
           <p className="text-sage-600 max-w-md mx-auto">
             Please fill out the form below to let us know if you'll be celebrating with us.
           </p>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-sage-200/50 p-6 sm:p-8 animate-fade-in-up animation-delay-200">
+        <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-6 sm:p-8 animate-fade-in-up animation-delay-200">
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
           {error && (
             <div className="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-sm">
               {error}
@@ -442,7 +454,7 @@ export default function RSVPForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 px-6 bg-sage-600 hover:bg-sage-700 disabled:bg-sage-400 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="btn-shine w-full py-4 px-6 bg-sage-600 hover:bg-sage-700 disabled:bg-sage-400 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

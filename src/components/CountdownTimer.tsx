@@ -50,12 +50,13 @@ export default function CountdownTimer() {
           className="flex flex-col items-center"
           style={{ animationDelay: `${index * 150}ms` }}
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-sage-200/50 flex items-center justify-center">
+          <div className="hover-lift relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-white to-cream-100 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 flex items-center justify-center overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
             <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold text-sage-800">
               {String(unit.value).padStart(2, '0')}
             </span>
           </div>
-          <span className="mt-2 text-xs sm:text-sm font-medium text-sage-600 uppercase tracking-wider">
+          <span className="mt-3 text-xs sm:text-sm font-medium text-sage-600 uppercase tracking-[0.2em]">
             {unit.label}
           </span>
         </div>

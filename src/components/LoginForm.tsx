@@ -28,10 +28,16 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 pt-20">
       <div className="w-full max-w-md">
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-sage-200/50 p-8">
+        <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-8">
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="font-serif text-3xl text-sage-800 mb-2">
+            <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-sage-100 flex items-center justify-center">
+              <svg className="w-7 h-7 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0-1.105.895-2 2-2s2 .895 2 2m-8 0V7a4 4 0 118 0m-9 4h10a2 2 0 012 2v5a2 2 0 01-2 2H7a2 2 0 01-2-2v-5a2 2 0 012-2z" />
+              </svg>
+            </div>
+            <h1 className="font-serif text-3xl text-sage-800 mb-1">
               Admin Login
             </h1>
             <p className="text-sage-600">
@@ -87,7 +93,7 @@ export default function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-6 bg-sage-600 hover:bg-sage-700 disabled:bg-sage-400 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="btn-shine w-full py-3 px-6 bg-sage-600 hover:bg-sage-700 disabled:bg-sage-400 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

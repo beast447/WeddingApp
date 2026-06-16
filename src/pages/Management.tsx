@@ -131,6 +131,9 @@ function ManagementDashboard() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
+            <p className="font-script text-3xl text-gold-gradient leading-none mb-1">
+              the guest list
+            </p>
             <h1 className="font-serif text-3xl sm:text-4xl text-sage-800">
               RSVP Management
             </h1>
@@ -161,7 +164,7 @@ function ManagementDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
+          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center">
                 <svg
@@ -185,7 +188,7 @@ function ManagementDashboard() {
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
+          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                 <svg
@@ -214,7 +217,7 @@ function ManagementDashboard() {
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
+          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
                 <svg
@@ -240,7 +243,7 @@ function ManagementDashboard() {
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
+          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
                 <svg
