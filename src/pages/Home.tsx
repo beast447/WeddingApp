@@ -67,11 +67,15 @@ const faqs = [
   },
   {
     q: 'What should I wear?',
-    a: 'Formal attire, please — suits and cocktail or evening dresses. Bring a light layer for the outdoor evening.',
+    a: 'Formal attire, please — suits and cocktail or evening dresses.',
   },
   {
     q: 'Is the ceremony indoors or outdoors?',
-    a: 'The ceremony will be outdoors (weather permitting), with the reception following indoors. Bring a light layer for the evening.',
+    a: 'Both the ceremony and reception are indoors, so you’ll be comfortable rain or shine.',
+  },
+  {
+    q: 'Is the reception at a different location?',
+    a: 'Yes — the ceremony is at New Harvest Ministries in Willis, and the reception follows at the Floyd County Moose Lodge in Floyd, about a 15-minute drive away.',
   },
   {
     q: 'Where do I park?',
@@ -282,11 +286,41 @@ export default function Home() {
                 />
               </div>
               <div className="text-center md:text-left">
+                <p className="text-gold-600 dark:text-gold-400 text-xs uppercase tracking-[0.2em] mb-1">The Ceremony</p>
                 <h3 className="font-serif text-2xl text-sage-800 dark:text-cream-100 mb-2">New Harvest Ministries</h3>
                 <p className="text-sage-600 dark:text-sage-300 mb-1">6236 Floyd Hwy S, Willis, VA 24380</p>
-                <p className="text-sage-500 dark:text-sage-400 text-sm mb-4">Free on-site parking available</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm mb-4">Indoors • Free on-site parking</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=New+Harvest+Ministries+6236+Floyd+Hwy+S+Willis+VA+24380"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium rounded-full shadow-md transition-all"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Get Directions</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Reception Venue */}
+          <div className="hover-lift bg-white dark:bg-night-800 rounded-2xl p-6 sm:p-8 shadow-lg ring-1 ring-sage-100 dark:ring-white/10 mb-6">
+            <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+              <div className="w-full md:w-64 h-48 shrink-0 rounded-xl bg-gradient-to-br from-sage-100 to-cream-100 dark:from-night-700 dark:to-night-600 flex items-center justify-center ring-1 ring-sage-200/60">
+                <svg className="w-16 h-16 text-sage-500 dark:text-gold-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 11h.01M15 11h.01" />
+                </svg>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="text-gold-600 dark:text-gold-400 text-xs uppercase tracking-[0.2em] mb-1">The Reception</p>
+                <h3 className="font-serif text-2xl text-sage-800 dark:text-cream-100 mb-2">Floyd County Moose Lodge</h3>
+                <p className="text-sage-600 dark:text-sage-300 mb-1">444 Floyd Hwy S, Floyd, VA 24091</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm mb-4">Indoors • About 15 minutes from the ceremony</p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Floyd+County+Moose+Lodge+444+Floyd+Hwy+S+Floyd+VA+24091"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium rounded-full shadow-md transition-all"
