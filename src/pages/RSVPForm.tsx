@@ -24,6 +24,31 @@ export default function RSVPForm() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string
+    email?: string
+    guests?: string
+  }>({})
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  const validate = (): boolean => {
+    const next: { name?: string; email?: string; guests?: string } = {}
+    if (!formData.name.trim()) {
+      next.name = 'Please enter your full name.'
+    }
+    const email = formData.email.trim()
+    if (!email) {
+      next.email = 'Please enter your email address.'
+    } else if (!emailPattern.test(email)) {
+      next.email = 'Please enter a valid email address.'
+    }
+    if (formData.attending && additionalGuests.some((g) => !g.name.trim())) {
+      next.guests = 'Please enter a name for each guest, or remove the empty rows.'
+    }
+    setFieldErrors(next)
+    return Object.keys(next).length === 0
+  }
 
   const addGuest = () =>
     setAdditionalGuests((prev) => [
@@ -49,25 +74,39 @@ export default function RSVPForm() {
     if (value === "no") finalValue = false
 
     setFormData((prev) => ({ ...prev, [name]: finalValue }))
+    if (name === 'name' || name === 'email') {
+      setFieldErrors((prev) => ({ ...prev, [name]: undefined }))
+    }
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
+    if (!validate()) return
     setLoading(true)
 
     try {
       await submitRSVP({
-        ...formData,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
         attending: formData.attending == true,
+        allergies: formData.allergies.trim(),
+        drinker: formData.drinker,
+        questions: formData.questions.trim(),
         additionalGuests: formData.attending
-          ? additionalGuests.filter((g) => g.name.trim() !== '')
+          ? additionalGuests
+              .map((g) => ({ ...g, name: g.name.trim() }))
+              .filter((g) => g.name !== '')
           : [],
       })
       setSubmitted(true)
     } catch (err) {
       console.error('Error submitting RSVP:', err)
-      setError('There was an error submitting your RSVP. Please try again.')
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'There was an error submitting your RSVP. Please try again.'
+      )
     } finally {
       setLoading(false)
     }
@@ -181,9 +220,20 @@ export default function RSVPForm() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                maxLength={120}
+                aria-invalid={!!fieldErrors.name}
+                className={`w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all ${
+                  fieldErrors.name
+                    ? 'border-rose-400 focus:ring-rose-400'
+                    : 'border-sage-200 dark:border-night-600 focus:ring-sage-400'
+                }`}
                 placeholder="Enter your full name"
               />
+              {fieldErrors.name && (
+                <p className="text-rose-600 dark:text-rose-400 text-sm mt-1.5">
+                  {fieldErrors.name}
+                </p>
+              )}
             </div>
 
             {/* Email Field */}
@@ -201,9 +251,20 @@ export default function RSVPForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                maxLength={254}
+                aria-invalid={!!fieldErrors.email}
+                className={`w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all ${
+                  fieldErrors.email
+                    ? 'border-rose-400 focus:ring-rose-400'
+                    : 'border-sage-200 dark:border-night-600 focus:ring-sage-400'
+                }`}
                 placeholder="Enter your email address"
               />
+              {fieldErrors.email && (
+                <p className="text-rose-600 dark:text-rose-400 text-sm mt-1.5">
+                  {fieldErrors.email}
+                </p>
+              )}
             </div>
 
             {/* Attending Radio Buttons */}
@@ -318,9 +379,11 @@ export default function RSVPForm() {
                         <input
                           type="text"
                           value={guest.name}
-                          onChange={(e) =>
+                          maxLength={120}
+                          onChange={(e) => {
                             updateGuest(index, { name: e.target.value })
-                          }
+                            setFieldErrors((prev) => ({ ...prev, guests: undefined }))
+                          }}
                           className="flex-1 px-4 py-2 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                           placeholder={`Guest ${index + 1} full name`}
                         />
@@ -426,6 +489,12 @@ export default function RSVPForm() {
                   </div>
                 )}
 
+                {fieldErrors.guests && (
+                  <p className="text-rose-600 dark:text-rose-400 text-sm mb-3">
+                    {fieldErrors.guests}
+                  </p>
+                )}
+
                 <button
                   type="button"
                   onClick={addGuest}
@@ -463,6 +532,7 @@ export default function RSVPForm() {
                 value={formData.allergies}
                 onChange={handleChange}
                 rows={3}
+                maxLength={1000}
                 className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
                 placeholder="Please let us know of any allergies or dietary requirements"
               />
@@ -482,6 +552,7 @@ export default function RSVPForm() {
                 value={formData.questions}
                 onChange={handleChange}
                 rows={3}
+                maxLength={1000}
                 className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
                 placeholder="Any questions or messages for Trevor & Stephanie?"
               />

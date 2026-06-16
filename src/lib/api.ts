@@ -49,7 +49,16 @@ export async function submitRSVP(data: RSVPPayload): Promise<void> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Failed to submit RSVP')
+  if (!res.ok) {
+    let message = 'There was an error submitting your RSVP. Please try again.'
+    try {
+      const body = await res.json()
+      if (body?.error) message = body.error
+    } catch {
+      // response had no JSON body; keep the default message
+    }
+    throw new Error(message)
+  }
 }
 
 export interface Guest {
