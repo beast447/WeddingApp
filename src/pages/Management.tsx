@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { fetchRSVPs, logout, RSVP } from '../lib/api'
+import { fetchRSVPs, deleteRSVP, logout, RSVP } from '../lib/api'
 import ProtectedRoute from '../components/ProtectedRoute'
+
+type SortKey = 'name' | 'attending' | 'submittedAt'
 
 function ManagementDashboard() {
   const [rsvps, setRsvps] = useState<RSVP[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'attending' | 'not-attending'>('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [sortKey, setSortKey] = useState<SortKey>('submittedAt')
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,6 +34,31 @@ function ManagementDashboard() {
     navigate('/admin')
   }
 
+  const handleDelete = async (rsvp: RSVP) => {
+    if (
+      !window.confirm(
+        `Delete ${rsvp.name}'s RSVP? This cannot be undone.`
+      )
+    )
+      return
+    try {
+      await deleteRSVP(rsvp.id)
+      setRsvps((prev) => prev.filter((r) => r.id !== rsvp.id))
+    } catch (error) {
+      console.error('Error deleting RSVP:', error)
+      alert('Failed to delete RSVP. Please try again.')
+    }
+  }
+
+  const toggleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortKey(key)
+      setSortDir('asc')
+    }
+  }
+
   const filteredRSVPs = rsvps.filter((rsvp) => {
     const matchesFilter =
       filter === 'all' ||
@@ -44,10 +73,30 @@ function ManagementDashboard() {
     return matchesFilter && matchesSearch
   })
 
+  const sortedRSVPs = [...filteredRSVPs].sort((a, b) => {
+    let cmp = 0
+    if (sortKey === 'name') {
+      cmp = a.name.localeCompare(b.name)
+    } else if (sortKey === 'attending') {
+      cmp = Number(a.attending) - Number(b.attending)
+    } else {
+      cmp =
+        new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime()
+    }
+    return sortDir === 'asc' ? cmp : -cmp
+  })
+
+  const emailGuests = () => {
+    const emails = sortedRSVPs.map((r) => r.email).filter(Boolean)
+    if (emails.length === 0) return
+    window.location.href = `mailto:?bcc=${encodeURIComponent(emails.join(','))}`
+  }
+
   const stats = {
     total: rsvps.length,
     attending: rsvps.filter((r) => r.attending).length,
     notAttending: rsvps.filter((r) => !r.attending).length,
+    drinkers: rsvps.filter((r) => r.attending && r.drinker).length,
   }
 
   const formatDate = (timestamp: string | null) => {
@@ -96,7 +145,7 @@ function ManagementDashboard() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center">
@@ -172,6 +221,32 @@ function ManagementDashboard() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-amber-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 21h8m-4-4v4m-5-9a5 5 0 0010 0V4H7v8zm10-4h2a2 2 0 010 4h-2"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-sage-500 text-sm">Drinkers (attending)</p>
+                <p className="font-serif text-3xl text-amber-700">
+                  {stats.drinkers}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Filters */}
@@ -223,6 +298,29 @@ function ManagementDashboard() {
                 </button>
               ))}
             </div>
+
+            {/* Email guests */}
+            <button
+              onClick={emailGuests}
+              disabled={sortedRSVPs.length === 0}
+              title="Opens your email client with these guests in BCC"
+              className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm bg-sage-600 text-white hover:bg-sage-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span>Email {sortedRSVPs.length}</span>
+            </button>
           </div>
         </div>
 
@@ -262,11 +360,20 @@ function ManagementDashboard() {
               <table className="w-full">
                 <thead className="bg-sage-50 border-b border-sage-200">
                   <tr>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
-                      Guest
+                    <th
+                      onClick={() => toggleSort('name')}
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                    >
+                      Guest{sortKey === 'name' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
+                    </th>
+                    <th
+                      onClick={() => toggleSort('attending')}
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                    >
+                      Status{sortKey === 'attending' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
                     </th>
                     <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
-                      Status
+                      Drinker
                     </th>
                     <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
                       Allergies
@@ -274,13 +381,19 @@ function ManagementDashboard() {
                     <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
                       Questions
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
-                      Submitted
+                    <th
+                      onClick={() => toggleSort('submittedAt')}
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                    >
+                      Submitted{sortKey === 'submittedAt' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
+                    </th>
+                    <th className="text-right px-6 py-4 text-sm font-semibold text-sage-700">
+                      Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sage-100">
-                  {filteredRSVPs.map((rsvp) => (
+                  {sortedRSVPs.map((rsvp) => (
                     <tr
                       key={rsvp.id}
                       className="hover:bg-sage-50/50 transition-colors"
@@ -308,6 +421,11 @@ function ManagementDashboard() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
+                        <span className="text-sage-600 text-sm">
+                          {rsvp.drinker ? 'Yes' : 'No'}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
                         <p className="text-sage-600 text-sm max-w-xs truncate">
                           {rsvp.allergies || '—'}
                         </p>
@@ -321,6 +439,27 @@ function ManagementDashboard() {
                         <p className="text-sage-500 text-sm">
                           {formatDate(rsvp.submittedAt)}
                         </p>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button
+                          onClick={() => handleDelete(rsvp)}
+                          title="Delete RSVP"
+                          className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sage-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                        >
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            />
+                          </svg>
+                        </button>
                       </td>
                     </tr>
                   ))}

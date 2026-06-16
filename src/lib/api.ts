@@ -63,3 +63,11 @@ export async function fetchRSVPs(): Promise<RSVP[]> {
   if (!res.ok) throw new Error('Failed to fetch RSVPs')
   return res.json()
 }
+
+export async function deleteRSVP(id: string): Promise<void> {
+  const res = await fetch(`${BASE_URL}/api/rsvps/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${getToken()}` },
+  })
+  if (!res.ok) throw new Error('Failed to delete RSVP')
+}
