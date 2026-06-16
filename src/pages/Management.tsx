@@ -5,6 +5,9 @@ import ProtectedRoute from '../components/ProtectedRoute'
 
 type SortKey = 'name' | 'attending' | 'submittedAt'
 
+const BEERS_PER_GUEST = 2
+const AVG_BEER_PRICE = 1.1
+
 function ManagementDashboard() {
   const [rsvps, setRsvps] = useState<RSVP[]>([])
   const [loading, setLoading] = useState(true)
@@ -98,6 +101,9 @@ function ManagementDashboard() {
     notAttending: rsvps.filter((r) => !r.attending).length,
     drinkers: rsvps.filter((r) => r.attending && r.drinker).length,
   }
+
+  const estimatedBeers = stats.drinkers * BEERS_PER_GUEST
+  const estimatedAlcoholCost = estimatedBeers * AVG_BEER_PRICE
 
   const formatDate = (timestamp: string | null) => {
     if (!timestamp) return 'N/A'
@@ -247,6 +253,23 @@ function ManagementDashboard() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Estimated bar cost */}
+        <div className="bg-amber-50 border border-amber-200 rounded-xl shadow-lg p-6 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <p className="text-amber-700 text-sm font-medium">
+              Estimated Bar Cost
+            </p>
+            <p className="text-amber-600/80 text-sm">
+              {stats.drinkers} drinking guest{stats.drinkers === 1 ? '' : 's'} ×{' '}
+              {BEERS_PER_GUEST} beers × ${AVG_BEER_PRICE.toFixed(2)} ={' '}
+              {estimatedBeers} beers
+            </p>
+          </div>
+          <p className="font-serif text-4xl text-amber-700">
+            ${estimatedAlcoholCost.toFixed(2)}
+          </p>
         </div>
 
         {/* Filters */}
