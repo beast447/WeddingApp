@@ -26,7 +26,10 @@ export default function RSVPForm() {
   const [error, setError] = useState('')
 
   const addGuest = () =>
-    setAdditionalGuests((prev) => [...prev, { name: '', isChild: false }])
+    setAdditionalGuests((prev) => [
+      ...prev,
+      { name: '', isChild: false, drinker: false },
+    ])
 
   const updateGuest = (index: number, patch: Partial<GuestInput>) =>
     setAdditionalGuests((prev) =>
@@ -321,7 +324,12 @@ export default function RSVPForm() {
                           </button>
                           <button
                             type="button"
-                            onClick={() => updateGuest(index, { isChild: true })}
+                            onClick={() =>
+                              updateGuest(index, {
+                                isChild: true,
+                                drinker: false,
+                              })
+                            }
                             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                               guest.isChild
                                 ? 'bg-sage-600 text-white'
@@ -331,6 +339,19 @@ export default function RSVPForm() {
                             Child
                           </button>
                         </div>
+                        {!guest.isChild && (
+                          <label className="flex items-center gap-2 text-sm text-sage-700 cursor-pointer sm:ml-1">
+                            <input
+                              type="checkbox"
+                              checked={guest.drinker}
+                              onChange={(e) =>
+                                updateGuest(index, { drinker: e.target.checked })
+                              }
+                              className="w-4 h-4 rounded border-sage-300 text-sage-600 focus:ring-sage-400"
+                            />
+                            <span>Drinks alcohol</span>
+                          </label>
+                        )}
                         <button
                           type="button"
                           onClick={() => removeGuest(index)}

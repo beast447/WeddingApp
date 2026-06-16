@@ -99,7 +99,13 @@ function ManagementDashboard() {
     total: rsvps.length,
     attending: rsvps.filter((r) => r.attending).length,
     notAttending: rsvps.filter((r) => !r.attending).length,
-    drinkers: rsvps.filter((r) => r.attending && r.drinker).length,
+    drinkers: rsvps
+      .filter((r) => r.attending)
+      .reduce(
+        (sum, r) =>
+          sum + (r.drinker ? 1 : 0) + r.guests.filter((g) => g.drinker).length,
+        0
+      ),
     attendingHeadcount: rsvps
       .filter((r) => r.attending)
       .reduce((sum, r) => sum + 1 + r.guests.length, 0),
@@ -457,6 +463,11 @@ function ManagementDashboard() {
                                   >
                                     {g.isChild ? 'Child' : 'Adult'}
                                   </span>
+                                  {g.drinker && (
+                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">
+                                      Drinks
+                                    </span>
+                                  )}
                                 </li>
                               ))}
                             </ul>
@@ -499,26 +510,47 @@ function ManagementDashboard() {
                           {formatDate(rsvp.submittedAt)}
                         </p>
                       </td>
-                      <td className="px-6 py-4 text-right">
-                        <button
-                          onClick={() => handleDelete(rsvp)}
-                          title="Delete RSVP"
-                          className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sage-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
-                        >
-                          <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-end gap-1">
+                          <a
+                            href={`mailto:${rsvp.email}`}
+                            title={`Email ${rsvp.name}`}
+                            className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sage-400 hover:text-sage-700 hover:bg-sage-100 transition-colors"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                            />
-                          </svg>
-                        </button>
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                              />
+                            </svg>
+                          </a>
+                          <button
+                            onClick={() => handleDelete(rsvp)}
+                            title="Delete RSVP"
+                            className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sage-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                          >
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

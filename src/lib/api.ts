@@ -30,6 +30,7 @@ export async function logout(): Promise<void> {
 export interface GuestInput {
   name: string
   isChild: boolean
+  drinker: boolean
 }
 
 export interface RSVPPayload {
@@ -55,6 +56,7 @@ export interface Guest {
   id: string
   name: string
   isChild: boolean
+  drinker: boolean
 }
 
 export interface RSVP {
