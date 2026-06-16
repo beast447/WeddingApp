@@ -75,9 +75,9 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 dark:from-night-900 dark:via-night-800 dark:to-night-900 px-4 pt-20">
         <div className="max-w-md w-full text-center">
-          <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-8 animate-fade-in-up">
+          <div className="relative overflow-hidden bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 dark:ring-white/10 p-8 animate-fade-in-up">
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
             {/* Success Icon */}
             <div className="w-20 h-20 bg-gradient-to-br from-sage-100 to-sage-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
@@ -99,10 +99,10 @@ export default function RSVPForm() {
             <p className="font-script text-3xl text-gold-gradient mb-0">
               merci
             </p>
-            <h2 className="font-serif text-3xl text-sage-800 mb-4">
+            <h2 className="font-serif text-3xl text-sage-800 dark:text-cream-100 mb-4">
               Thank You!
             </h2>
-            <p className="text-sage-600 mb-6">
+            <p className="text-sage-600 dark:text-sage-300 mb-6">
               {formData.attending === true
                 ? "We're so excited you'll be joining us! We can't wait to celebrate with you."
                 : "We're sorry you can't make it, but we appreciate you letting us know."}
@@ -110,7 +110,7 @@ export default function RSVPForm() {
 
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sage-700 hover:text-sage-900 font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-sage-700 dark:text-sage-300 hover:text-sage-900 dark:hover:text-cream-100 font-medium transition-colors"
             >
               <svg
                 className="w-4 h-4"
@@ -134,14 +134,14 @@ export default function RSVPForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 py-24">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 dark:from-night-900 dark:via-night-800 dark:to-night-900 px-4 py-24">
       <div className="max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">
           <p className="font-script text-4xl text-gold-gradient mb-1">
             We hope you can join us
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 mb-3 tracking-wide">
+          <h1 className="font-serif text-4xl sm:text-5xl text-sage-800 dark:text-cream-100 mb-3 tracking-wide">
             RSVP
           </h1>
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -151,13 +151,13 @@ export default function RSVPForm() {
             </svg>
             <div className="rule-gold-rev" />
           </div>
-          <p className="text-sage-600 max-w-md mx-auto">
+          <p className="text-sage-600 dark:text-sage-300 max-w-md mx-auto">
             Please fill out the form below to let us know if you'll be celebrating with us.
           </p>
         </div>
 
         {/* Form Card */}
-        <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-6 sm:p-8 animate-fade-in-up animation-delay-200">
+        <div className="relative overflow-hidden bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 dark:ring-white/10 p-6 sm:p-8 animate-fade-in-up animation-delay-200">
           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
           {error && (
             <div className="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-sm">
@@ -170,7 +170,7 @@ export default function RSVPForm() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Full Name <span className="text-rose-500">*</span>
               </label>
@@ -181,7 +181,7 @@ export default function RSVPForm() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                 placeholder="Enter your full name"
               />
             </div>
@@ -190,7 +190,7 @@ export default function RSVPForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Email Address <span className="text-rose-500">*</span>
               </label>
@@ -201,14 +201,14 @@ export default function RSVPForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                 placeholder="Enter your email address"
               />
             </div>
 
             {/* Attending Radio Buttons */}
             <div>
-              <label className="block text-sm font-medium text-sage-700 mb-3">
+              <label className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-3">
                 Will you be attending? <span className="text-rose-500">*</span>
               </label>
               <div className="flex gap-4">
@@ -226,7 +226,7 @@ export default function RSVPForm() {
                     <div className="w-5 h-5 border-2 border-sage-300 rounded-full peer-checked:border-sage-600 transition-colors" />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-sage-600 rounded-full scale-0 peer-checked:scale-100 transition-transform" />
                   </div>
-                  <span className="text-sage-700 group-hover:text-sage-800 transition-colors">
+                  <span className="text-sage-700 dark:text-sage-300 group-hover:text-sage-800 dark:group-hover:text-cream-100 transition-colors">
                     Joyfully Accept
                   </span>
                 </label>
@@ -244,7 +244,7 @@ export default function RSVPForm() {
                     <div className="w-5 h-5 border-2 border-sage-300 rounded-full peer-checked:border-sage-600 transition-colors" />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-sage-600 rounded-full scale-0 peer-checked:scale-100 transition-transform" />
                   </div>
-                  <span className="text-sage-700 group-hover:text-sage-800 transition-colors">
+                  <span className="text-sage-700 dark:text-sage-300 group-hover:text-sage-800 dark:group-hover:text-cream-100 transition-colors">
                     Regretfully Decline
                   </span>
                 </label>
@@ -253,7 +253,7 @@ export default function RSVPForm() {
 
             {/* Drinker Radio Buttons */}
             <div>
-              <label className="block text-sm font-medium text-sage-700 mb-3">
+              <label className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-3">
                 Will you be drinking alcohol? <span className="text-rose-500">*</span>
               </label>
               <div className="flex gap-4">
@@ -271,7 +271,7 @@ export default function RSVPForm() {
                     <div className="w-5 h-5 border-2 border-sage-300 rounded-full peer-checked:border-sage-600 transition-colors" />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-sage-600 rounded-full scale-0 peer-checked:scale-100 transition-transform" />
                   </div>
-                  <span className="text-sage-700 group-hover:text-sage-800 transition-colors">
+                  <span className="text-sage-700 dark:text-sage-300 group-hover:text-sage-800 dark:group-hover:text-cream-100 transition-colors">
                     Yes
                   </span>
                 </label>
@@ -289,7 +289,7 @@ export default function RSVPForm() {
                     <div className="w-5 h-5 border-2 border-sage-300 rounded-full peer-checked:border-sage-600 transition-colors" />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-sage-600 rounded-full scale-0 peer-checked:scale-100 transition-transform" />
                   </div>
-                  <span className="text-sage-700 group-hover:text-sage-800 transition-colors">
+                  <span className="text-sage-700 dark:text-sage-300 group-hover:text-sage-800 dark:group-hover:text-cream-100 transition-colors">
                     No
                   </span>
                 </label>
@@ -299,10 +299,10 @@ export default function RSVPForm() {
             {/* Additional Guests */}
             {formData.attending && (
               <div>
-                <label className="block text-sm font-medium text-sage-700 mb-2">
+                <label className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2">
                   Additional Guests
                 </label>
-                <p className="text-sage-500 text-sm mb-3">
+                <p className="text-sage-500 dark:text-sage-400 text-sm mb-3">
                   Add anyone joining you (spouse, partner, children).
                 </p>
 
@@ -319,17 +319,17 @@ export default function RSVPForm() {
                           onChange={(e) =>
                             updateGuest(index, { name: e.target.value })
                           }
-                          className="flex-1 px-4 py-2 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                          className="flex-1 px-4 py-2 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                           placeholder={`Guest ${index + 1} full name`}
                         />
-                        <div className="flex gap-1 bg-cream-50 border border-sage-200 rounded-lg p-1">
+                        <div className="flex gap-1 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg p-1">
                           <button
                             type="button"
                             onClick={() => updateGuest(index, { isChild: false })}
                             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                               !guest.isChild
                                 ? 'bg-sage-600 text-white'
-                                : 'text-sage-600 hover:bg-sage-100'
+                                : 'text-sage-600 dark:text-sage-300 hover:bg-sage-100 dark:hover:bg-night-600'
                             }`}
                           >
                             Adult
@@ -345,14 +345,14 @@ export default function RSVPForm() {
                             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                               guest.isChild
                                 ? 'bg-sage-600 text-white'
-                                : 'text-sage-600 hover:bg-sage-100'
+                                : 'text-sage-600 dark:text-sage-300 hover:bg-sage-100 dark:hover:bg-night-600'
                             }`}
                           >
                             Child
                           </button>
                         </div>
                         {!guest.isChild && (
-                          <label className="flex items-center gap-2 text-sm text-sage-700 cursor-pointer sm:ml-1">
+                          <label className="flex items-center gap-2 text-sm text-sage-700 dark:text-sage-300 cursor-pointer sm:ml-1">
                             <input
                               type="checkbox"
                               checked={guest.drinker}
@@ -392,7 +392,7 @@ export default function RSVPForm() {
                 <button
                   type="button"
                   onClick={addGuest}
-                  className="inline-flex items-center gap-2 px-4 py-2 border border-dashed border-sage-300 rounded-lg text-sage-600 hover:bg-sage-50 hover:border-sage-400 transition-colors text-sm font-medium"
+                  className="inline-flex items-center gap-2 px-4 py-2 border border-dashed border-sage-300 dark:border-night-600 rounded-lg text-sage-600 dark:text-sage-300 hover:bg-sage-50 dark:hover:bg-night-700 hover:border-sage-400 transition-colors text-sm font-medium"
                 >
                   <svg
                     className="w-5 h-5"
@@ -416,7 +416,7 @@ export default function RSVPForm() {
             <div>
               <label
                 htmlFor="allergies"
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Food Allergies / Dietary Restrictions
               </label>
@@ -426,7 +426,7 @@ export default function RSVPForm() {
                 value={formData.allergies}
                 onChange={handleChange}
                 rows={3}
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
                 placeholder="Please let us know of any allergies or dietary requirements"
               />
             </div>
@@ -435,7 +435,7 @@ export default function RSVPForm() {
             <div>
               <label
                 htmlFor="questions"
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Questions for the Couple
               </label>
@@ -445,7 +445,7 @@ export default function RSVPForm() {
                 value={formData.questions}
                 onChange={handleChange}
                 rows={3}
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all resize-none"
                 placeholder="Any questions or messages for Trevor & Stephanie?"
               />
             </div>
@@ -487,7 +487,7 @@ export default function RSVPForm() {
         <div className="text-center mt-8">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors"
+            className="inline-flex items-center gap-2 text-sage-600 dark:text-sage-400 hover:text-sage-800 dark:hover:text-cream-100 transition-colors"
           >
             <svg
               className="w-4 h-4"

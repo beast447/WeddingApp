@@ -1,58 +1,115 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
 import PhotoGallery from '../components/PhotoGallery'
 import newHarvest from '../assets/newharvest.png'
 
+const quickFacts = [
+  {
+    label: 'When',
+    value: 'August 1st, 2026',
+    sub: 'Ceremony at 4:00 PM',
+    path: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+  },
+  {
+    label: 'Where',
+    value: 'New Harvest Ministries',
+    sub: 'Willis, Virginia',
+    path: 'M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z',
+  },
+  {
+    label: 'Dress Code',
+    value: 'Semi-Formal',
+    sub: 'Garden-party attire',
+    path: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
+  },
+]
+
+const schedule = [
+  { time: '4:00 PM', title: 'Ceremony', desc: 'Join us as we say "I do."' },
+  { time: '5:00 PM', title: 'Cocktail Hour', desc: 'Drinks, hors d’oeuvres & mingling.' },
+  { time: '6:00 PM', title: 'Dinner & Toasts', desc: 'A seated dinner to celebrate together.' },
+  { time: '8:00 PM', title: 'Dancing', desc: 'Hit the floor with the newlyweds.' },
+  { time: '10:00 PM', title: 'Send-Off', desc: 'A sparkler farewell to end the night.' },
+]
+
+const faqs = [
+  {
+    q: 'When should I RSVP by?',
+    a: 'Please RSVP by July 1st, 2026 so we can finalize our headcount with the venue.',
+  },
+  {
+    q: 'Can I bring a guest?',
+    a: 'We love your enthusiasm! Use the RSVP form to add everyone joining you — spouses, partners, and children all welcome.',
+  },
+  {
+    q: 'Are children welcome?',
+    a: 'Absolutely. Little ones are part of the family — just add them as guests when you RSVP.',
+  },
+  {
+    q: 'What should I wear?',
+    a: 'Semi-formal, garden-party attire. Think florals, soft colors, and comfortable shoes for the lawn.',
+  },
+  {
+    q: 'Is the ceremony indoors or outdoors?',
+    a: 'The ceremony will be outdoors (weather permitting), with the reception following indoors. Bring a light layer for the evening.',
+  },
+  {
+    q: 'Where do I park?',
+    a: 'Free on-site parking is available at the venue. Carpooling is encouraged.',
+  },
+]
+
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0)
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-sage-50 to-rose-50 animate-gradient" />
-        
+        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-sage-50 to-rose-50 dark:from-night-950 dark:via-night-900 dark:to-night-800 animate-gradient" />
+
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-sage-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-rose-200/30 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-64 h-64 bg-sage-200/30 dark:bg-sage-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-rose-200/30 dark:bg-rose-500/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/10 rounded-full blur-3xl" />
 
         {/* Content */}
-        <div className="relative z-10 text-center px-4 pt-20 pb-12 max-w-4xl mx-auto">
-          {/* Decorative top flourish */}
+        <div className="relative z-10 text-center px-4 pt-24 pb-12 max-w-4xl mx-auto">
           <div className="flex justify-center mb-6">
             <svg className="w-24 h-8 text-gold-500" viewBox="0 0 100 30" fill="currentColor">
-              <path d="M0 15 Q25 0 50 15 Q75 30 100 15" stroke="currentColor" strokeWidth="1" fill="none"/>
+              <path d="M0 15 Q25 0 50 15 Q75 30 100 15" stroke="currentColor" strokeWidth="1" fill="none" />
             </svg>
           </div>
 
-          {/* Save the Date text */}
-          <p className="text-sage-600 uppercase tracking-[0.3em] text-sm font-medium mb-4">
+          <p className="text-sage-600 dark:text-sage-300 uppercase tracking-[0.3em] text-xs sm:text-sm font-medium mb-4">
             Save the Date
           </p>
 
           {/* Names */}
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-2 tracking-wide drop-shadow-sm">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 dark:text-cream-100 mb-2 tracking-wide drop-shadow-sm">
             Trevor
           </h1>
           <p className="font-script text-6xl sm:text-7xl md:text-8xl text-gold-gradient leading-none my-1">
             &
           </p>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 mb-8 tracking-wide drop-shadow-sm">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-sage-800 dark:text-cream-100 mb-8 tracking-wide drop-shadow-sm">
             Stephanie
           </h1>
 
           {/* Date */}
           <div className="mb-8">
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-sage-700 mb-2">
+            <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-sage-700 dark:text-sage-200 mb-2">
               August 1st, 2026
             </p>
-            <div className="flex items-center justify-center gap-3 text-sage-600">
-              <div className="w-12 h-px bg-sage-300" />
-              <svg className="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            <div className="flex items-center justify-center gap-3 text-sage-600 dark:text-sage-400">
+              <div className="w-8 sm:w-12 h-px bg-sage-300 dark:bg-sage-600" />
+              <svg className="w-4 h-4 text-gold-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
-              <span className="text-sm sm:text-base">New Harvest Minitries • Willis, Virginia</span>
-              <div className="w-12 h-px bg-sage-300" />
+              <span className="text-xs sm:text-base">New Harvest Ministries • Willis, Virginia</span>
+              <div className="w-8 sm:w-12 h-px bg-sage-300 dark:bg-sage-600" />
             </div>
           </div>
 
@@ -62,47 +119,127 @@ export default function Home() {
           </div>
 
           {/* CTA Button */}
-            <Link
-              to="/rsvp"
-              className="btn-shine inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <span>RSVP Now</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          <Link
+            to="/rsvp"
+            className="btn-shine inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <span>RSVP Now</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+
+          {/* Scroll hint */}
+          <div className="mt-12 flex justify-center">
+            <a href="#details" aria-label="Scroll to details" className="text-sage-400 dark:text-sage-500 animate-float">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
-            </Link>
+            </a>
           </div>
+        </div>
       </section>
 
-      {/* Photo Gallery Section */}
-      <PhotoGallery />
-      
-      {/* Details Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-script text-3xl text-gold-gradient mb-1">
-            with joy
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 mb-4">
-            Join Us for Our Special Day
-          </h2>
-          <div className="flex items-center justify-center gap-3 mb-6">
+      {/* Quick Facts */}
+      <section id="details" className="py-12 sm:py-16 px-4 bg-white dark:bg-night-900 scroll-mt-16">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          {quickFacts.map((fact) => (
+            <div
+              key={fact.label}
+              className="hover-lift text-center bg-gradient-to-br from-cream-50 to-sage-50 dark:from-night-800 dark:to-night-700 rounded-2xl p-6 shadow-lg ring-1 ring-sage-100 dark:ring-white/10"
+            >
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-sage-100 dark:bg-night-600 flex items-center justify-center">
+                <svg className="w-6 h-6 text-sage-600 dark:text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={fact.path} />
+                </svg>
+              </div>
+              <p className="text-sage-500 dark:text-sage-400 text-xs uppercase tracking-[0.2em] mb-1">{fact.label}</p>
+              <p className="font-serif text-xl text-sage-800 dark:text-cream-100">{fact.value}</p>
+              <p className="text-sage-500 dark:text-sage-400 text-sm mt-1">{fact.sub}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Our Story */}
+      <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-cream-50 to-sage-50 dark:from-night-900 dark:to-night-800">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="font-script text-3xl sm:text-4xl text-gold-gradient mb-1">our story</p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 dark:text-cream-100 mb-4">How We Got Here</h2>
+          <div className="flex items-center justify-center gap-3 mb-8">
             <div className="rule-gold" />
             <svg className="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
             <div className="rule-gold-rev" />
           </div>
-          <p className="text-sage-600 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-            We are so excited to celebrate our love with you! Please save the date 
-            and join us at New Harvest Minitries in beautiful Willis, Virginia for an unforgettable 
-            celebration of our journey together.
+          <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed mb-4">
+            What started as a chance meeting grew into a friendship, and then into a love we
+            can't wait to celebrate. Through countless adventures, quiet evenings, and a few
+            misadventures along the way, we found our forever in each other.
           </p>
+          <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed">
+            Now we're ready for the biggest adventure yet — and there's no one we'd rather have
+            by our side than the people who shaped us. Thank you for being part of our journey.
+          </p>
+        </div>
+      </section>
+
+      {/* Photo Gallery */}
+      <PhotoGallery />
+
+      {/* Schedule / Timeline */}
+      <section className="py-16 sm:py-20 px-4 bg-white dark:bg-night-900">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="font-script text-3xl sm:text-4xl text-gold-gradient mb-1">the celebration</p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 dark:text-cream-100">Schedule of Events</h2>
+          </div>
+
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-[1.15rem] sm:left-1/2 top-2 bottom-2 w-px bg-sage-200 dark:bg-night-600 sm:-translate-x-1/2" />
+            <div className="space-y-8">
+              {schedule.map((item, i) => (
+                <div
+                  key={item.title}
+                  className={`relative flex items-start gap-4 sm:gap-0 sm:items-center ${
+                    i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                  }`}
+                >
+                  {/* dot */}
+                  <div className="z-10 shrink-0 w-10 h-10 sm:absolute sm:left-1/2 sm:-translate-x-1/2 rounded-full bg-sage-600 dark:bg-gold-500 text-white flex items-center justify-center shadow-md">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  {/* card */}
+                  <div className={`flex-1 sm:w-1/2 ${i % 2 === 0 ? 'sm:pr-12 sm:text-right' : 'sm:pl-12'}`}>
+                    <div className="hover-lift bg-gradient-to-br from-cream-50 to-sage-50 dark:from-night-800 dark:to-night-700 rounded-xl p-4 shadow-md ring-1 ring-sage-100 dark:ring-white/10">
+                      <p className="font-serif text-xl text-gold-600 dark:text-gold-400">{item.time}</p>
+                      <p className="font-medium text-sage-800 dark:text-cream-100">{item.title}</p>
+                      <p className="text-sage-500 dark:text-sage-400 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                  <div className="hidden sm:block sm:w-1/2" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Venue & Travel */}
+      <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-sage-50 to-cream-50 dark:from-night-800 dark:to-night-900">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="font-script text-3xl sm:text-4xl text-gold-gradient mb-1">getting there</p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 dark:text-cream-100">Venue & Travel</h2>
+          </div>
 
           {/* Venue Card */}
-          <div className="hover-lift bg-gradient-to-br from-cream-50 to-sage-50 rounded-2xl p-8 shadow-lg border border-sage-100">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              {/* Venue Icon */}
+          <div className="hover-lift bg-white dark:bg-night-800 rounded-2xl p-6 sm:p-8 shadow-lg ring-1 ring-sage-100 dark:ring-white/10 mb-6">
+            <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
               <div className="overflow-hidden rounded-xl shadow-md ring-1 ring-sage-200/60 shrink-0">
                 <img
                   src={newHarvest}
@@ -110,43 +247,113 @@ export default function Home() {
                   className="w-full md:w-64 h-48 object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
-              
-              {/* Venue Details */}
               <div className="text-center md:text-left">
-                <h3 className="font-serif text-2xl text-sage-800 mb-2">New Harvest Ministries</h3>
-                <p className="text-sage-600 mb-1">Willis Virginia</p>
-                <p className="text-sage-600 mb-1">6236 Floyd Hwy S, Willis, VA 24380</p>
-                <p className="text-sage-500 text-sm">August 1st, 2026</p>
+                <h3 className="font-serif text-2xl text-sage-800 dark:text-cream-100 mb-2">New Harvest Ministries</h3>
+                <p className="text-sage-600 dark:text-sage-300 mb-1">6236 Floyd Hwy S, Willis, VA 24380</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm mb-4">Free on-site parking available</p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=New+Harvest+Ministries+6236+Floyd+Hwy+S+Willis+VA+24380"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium rounded-full shadow-md transition-all"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Get Directions</span>
+                </a>
               </div>
             </div>
           </div>
 
-          {/* RSVP reminder */}
-          <div className="mt-12">
-            <p className="text-sage-500 mb-4">More details coming soon!</p>
-            <span
-              className="inline-flex items-center gap-2 text-sage-400 font-medium cursor-not-allowed opacity-50"
-            >
-              <span>Let us know if you can make it</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
+          {/* Where to stay */}
+          <div className="hover-lift bg-white dark:bg-night-800 rounded-2xl p-6 sm:p-8 shadow-lg ring-1 ring-sage-100 dark:ring-white/10">
+            <h3 className="font-serif text-2xl text-sage-800 dark:text-cream-100 mb-2">Where to Stay</h3>
+            <p className="text-sage-600 dark:text-sage-300 leading-relaxed">
+              Floyd and Christiansburg both offer cozy inns, hotels, and cabins a short drive
+              from the venue. We recommend booking early, as summer weekends fill up quickly.
+              A detailed list of recommended accommodations is coming soon!
+            </p>
           </div>
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-16 sm:py-20 px-4 bg-white dark:bg-night-900">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="font-script text-3xl sm:text-4xl text-gold-gradient mb-1">good to know</p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-sage-800 dark:text-cream-100">Frequently Asked</h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, i) => {
+              const open = openFaq === i
+              return (
+                <div
+                  key={faq.q}
+                  className="bg-gradient-to-br from-cream-50 to-sage-50 dark:from-night-800 dark:to-night-700 rounded-xl ring-1 ring-sage-100 dark:ring-white/10 overflow-hidden"
+                >
+                  <button
+                    onClick={() => setOpenFaq(open ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+                    aria-expanded={open}
+                  >
+                    <span className="font-medium text-sage-800 dark:text-cream-100">{faq.q}</span>
+                    <svg
+                      className={`w-5 h-5 shrink-0 text-sage-500 dark:text-sage-400 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className={`grid transition-all duration-300 ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <div className="overflow-hidden">
+                      <p className="px-5 pb-4 text-sage-600 dark:text-sage-300 leading-relaxed">{faq.a}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Registry + Final CTA */}
+      <section className="relative py-20 sm:py-24 px-4 overflow-hidden bg-gradient-to-br from-sage-600 to-sage-800 dark:from-night-800 dark:to-night-950">
+        <div className="absolute top-0 left-1/4 w-72 h-72 bg-gold-400/10 rounded-full blur-3xl" />
+        <div className="relative max-w-2xl mx-auto text-center">
+          <svg className="w-10 h-10 text-gold-400 mx-auto mb-4 animate-float" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
+          <p className="font-script text-3xl sm:text-4xl text-gold-300 mb-1">with gratitude</p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-white mb-4">Your Presence Is the Present</h2>
+          <p className="text-cream-100/90 leading-relaxed mb-8 max-w-lg mx-auto">
+            Your love and support mean the world to us. Should you wish to give a gift, a registry
+            will be available here soon. Most of all, we can't wait to celebrate with you.
+          </p>
+          <Link
+            to="/rsvp"
+            className="btn-shine inline-flex items-center gap-2 px-8 py-4 bg-white text-sage-700 font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <span>RSVP Now</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="py-10 px-4 bg-gradient-to-b from-sage-800 to-sage-900 text-center">
-        <p className="font-script text-4xl text-cream-100 mb-1">
-          Trevor &amp; Stephanie
-        </p>
-        <p className="text-sage-400 text-sm">
-          August 1st, 2026 • Floyd, Virginia
-        </p>
+      <footer className="py-10 px-4 bg-gradient-to-b from-sage-800 to-sage-900 dark:from-night-950 dark:to-black text-center">
+        <p className="font-script text-4xl text-cream-100 mb-1">Trevor &amp; Stephanie</p>
+        <p className="text-sage-400 text-sm">August 1st, 2026 • Willis, Virginia</p>
         <div className="flex justify-center mt-4">
           <svg className="w-6 h-6 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
       </footer>

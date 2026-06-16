@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,13 +14,13 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-sage-200/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream-50/90 dark:bg-night-900/90 backdrop-blur-md border-b border-sage-200/50 dark:border-white/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link
             to="/"
-            className="font-serif text-2xl font-medium text-sage-800 hover:text-sage-600 transition-colors tracking-wide"
+            className="font-serif text-2xl font-medium text-sage-800 dark:text-cream-100 hover:text-sage-600 dark:hover:text-cream-200 transition-colors tracking-wide"
           >
             T <span className="font-script text-3xl text-gold-gradient align-middle">&</span> S
           </Link>
@@ -32,19 +33,22 @@ export default function Navbar() {
                 to={link.path}
                 className={`text-sm font-medium tracking-wide uppercase transition-colors ${
                   isActive(link.path)
-                    ? 'text-sage-700 border-b-2 border-gold-500 pb-1'
-                    : 'text-sage-600 hover:text-sage-800'
+                    ? 'text-sage-700 dark:text-cream-100 border-b-2 border-gold-500 pb-1'
+                    : 'text-sage-600 dark:text-sage-300 hover:text-sage-800 dark:hover:text-cream-100'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile controls */}
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-sage-700 hover:text-sage-900 transition-colors"
+            className="p-2 text-sage-700 dark:text-sage-200 hover:text-sage-900 dark:hover:text-cream-100 transition-colors"
             aria-label="Toggle menu"
           >
             <svg
@@ -70,11 +74,12 @@ export default function Navbar() {
               )}
             </svg>
           </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-sage-200/50 animate-fade-in">
+          <div className="md:hidden py-4 border-t border-sage-200/50 dark:border-white/10 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
@@ -83,8 +88,8 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`text-sm font-medium tracking-wide uppercase transition-colors ${
                     isActive(link.path)
-                      ? 'text-sage-700'
-                      : 'text-sage-600 hover:text-sage-800'
+                      ? 'text-sage-700 dark:text-cream-100'
+                      : 'text-sage-600 dark:text-sage-300 hover:text-sage-800 dark:hover:text-cream-100'
                   }`}
                 >
                   {link.label}

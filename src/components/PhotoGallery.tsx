@@ -30,9 +30,10 @@ const photos: Photo[] = [
 
 export default function PhotoGallery() {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cream-50 to-sage-50">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cream-50 to-sage-50 dark:from-night-800 dark:to-night-900">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-serif text-3xl sm:text-4xl text-center text-sage-800 mb-12 animate-fade-in">
+        <p className="font-script text-3xl sm:text-4xl text-center text-gold-gradient mb-1">memories</p>
+        <h2 className="font-serif text-3xl sm:text-4xl text-center text-sage-800 dark:text-cream-100 mb-12 animate-fade-in">
           Our Journey Together
         </h2>
         

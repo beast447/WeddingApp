@@ -1,10 +1,20 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
+/* Class-based dark mode (toggled by adding `.dark` to <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
   --font-script: 'Great Vibes', cursive;
+
+  /* Dark "night" palette */
+  --color-night-950: #0b1119;
+  --color-night-900: #0f1722;
+  --color-night-800: #16212e;
+  --color-night-700: #1f2d3d;
+  --color-night-600: #2b3c4f;
   
   /* Wedding color palette - elegant dusty blue (lighter tint) */
   --color-sage-50: #f7f9fc;
@@ -52,10 +62,27 @@ body {
   color: var(--color-sage-900);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark body {
+  background-color: var(--color-night-900);
+  color: var(--color-sage-200);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
+}
+
+/* Dark scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-night-800);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-night-600);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage-700);
 }
 
 ::selection {

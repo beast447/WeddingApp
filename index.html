@@ -3,9 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trevor & Stephanie | Save the Date</title>
-    <meta name="description" content="Save the Date for Trevor and Stephanie's wedding on August 1st, 2026 at The 84 in Floyd, VA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fcf9f3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)" />
+    <title>Trevor & Stephanie | August 1st, 2026</title>
+    <meta name="description" content="Join Trevor and Stephanie as they celebrate their wedding on August 1st, 2026 at New Harvest Ministries in Willis, Virginia. RSVP, schedule, travel details and more." />
+    <script>
+      // Apply theme before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

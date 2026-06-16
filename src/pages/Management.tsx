@@ -126,7 +126,7 @@ function ManagementDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 py-24">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 dark:from-night-900 dark:via-night-800 dark:to-night-900 px-4 py-24">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
@@ -134,16 +134,16 @@ function ManagementDashboard() {
             <p className="font-script text-3xl text-gold-gradient leading-none mb-1">
               the guest list
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl text-sage-800">
+            <h1 className="font-serif text-3xl sm:text-4xl text-sage-800 dark:text-cream-100">
               RSVP Management
             </h1>
-            <p className="text-sage-600 mt-1">
+            <p className="text-sage-600 dark:text-sage-300 mt-1">
               View and manage your guest responses
             </p>
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-sage-200 rounded-lg text-sage-700 hover:bg-sage-50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-night-800 border border-sage-200 dark:border-white/10 rounded-lg text-sage-700 dark:text-sage-200 hover:bg-sage-50 dark:hover:bg-night-700 transition-colors"
           >
             <svg
               className="w-5 h-5"
@@ -164,7 +164,7 @@ function ManagementDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
+          <div className="hover-lift bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 dark:ring-white/10 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center">
                 <svg
@@ -182,13 +182,13 @@ function ManagementDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="text-sage-500 text-sm">Total Responses</p>
-                <p className="font-serif text-3xl text-sage-800">{stats.total}</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm">Total Responses</p>
+                <p className="font-serif text-3xl text-sage-800 dark:text-cream-100">{stats.total}</p>
               </div>
             </div>
           </div>
 
-          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
+          <div className="hover-lift bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 dark:ring-white/10 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                 <svg
@@ -206,7 +206,7 @@ function ManagementDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="text-sage-500 text-sm">Attending</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm">Attending</p>
                 <p className="font-serif text-3xl text-green-700">
                   {stats.attending}
                 </p>
@@ -217,7 +217,7 @@ function ManagementDashboard() {
             </div>
           </div>
 
-          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
+          <div className="hover-lift bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 dark:ring-white/10 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
                 <svg
@@ -235,7 +235,7 @@ function ManagementDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="text-sage-500 text-sm">Not Attending</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm">Not Attending</p>
                 <p className="font-serif text-3xl text-rose-700">
                   {stats.notAttending}
                 </p>
@@ -243,7 +243,7 @@ function ManagementDashboard() {
             </div>
           </div>
 
-          <div className="hover-lift bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 p-6">
+          <div className="hover-lift bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-2xl shadow-lg ring-1 ring-sage-200/60 dark:ring-white/10 p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
                 <svg
@@ -261,7 +261,7 @@ function ManagementDashboard() {
                 </svg>
               </div>
               <div>
-                <p className="text-sage-500 text-sm">Drinkers (attending)</p>
+                <p className="text-sage-500 dark:text-sage-400 text-sm">Drinkers (attending)</p>
                 <p className="font-serif text-3xl text-amber-700">
                   {stats.drinkers}
                 </p>
@@ -271,24 +271,24 @@ function ManagementDashboard() {
         </div>
 
         {/* Estimated bar cost */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl shadow-lg p-6 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl shadow-lg p-6 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <p className="text-amber-700 text-sm font-medium">
+            <p className="text-amber-700 dark:text-amber-300 text-sm font-medium">
               Estimated Bar Cost
             </p>
-            <p className="text-amber-600/80 text-sm">
+            <p className="text-amber-600/80 dark:text-amber-200/70 text-sm">
               {stats.drinkers} drinking guest{stats.drinkers === 1 ? '' : 's'} ×{' '}
               {BEERS_PER_GUEST} beers × ${AVG_BEER_PRICE.toFixed(2)} ={' '}
               {estimatedBeers} beers
             </p>
           </div>
-          <p className="font-serif text-4xl text-amber-700">
+          <p className="font-serif text-4xl text-amber-700 dark:text-amber-300">
             ${estimatedAlcoholCost.toFixed(2)}
           </p>
         </div>
 
         {/* Filters */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 p-4 mb-6">
+        <div className="bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 dark:border-white/10 p-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
@@ -310,7 +310,7 @@ function ManagementDashboard() {
                 placeholder="Search by name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
               />
             </div>
 
@@ -329,7 +329,7 @@ function ManagementDashboard() {
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                     filter === option.value
                       ? 'bg-sage-600 text-white'
-                      : 'bg-cream-50 text-sage-700 hover:bg-sage-100'
+                      : 'bg-cream-50 dark:bg-night-700 text-sage-700 dark:text-sage-300 hover:bg-sage-100 dark:hover:bg-night-600'
                   }`}
                 >
                   {option.label}
@@ -363,16 +363,16 @@ function ManagementDashboard() {
         </div>
 
         {/* Table */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 overflow-hidden">
+        <div className="bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200/50 dark:border-white/10 overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="flex flex-col items-center gap-4">
                 <div className="w-12 h-12 border-4 border-sage-200 border-t-sage-600 rounded-full animate-spin" />
-                <p className="text-sage-600 font-medium">Loading RSVPs...</p>
+                <p className="text-sage-600 dark:text-sage-300 font-medium">Loading RSVPs...</p>
               </div>
             </div>
           ) : filteredRSVPs.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-sage-500">
+            <div className="flex flex-col items-center justify-center py-20 text-sage-500 dark:text-sage-400">
               <svg
                 className="w-16 h-16 mb-4 text-sage-300"
                 fill="none"
@@ -396,65 +396,65 @@ function ManagementDashboard() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-sage-50 border-b border-sage-200">
+                <thead className="bg-sage-50 dark:bg-night-700/60 border-b border-sage-200 dark:border-white/10">
                   <tr>
                     <th
                       onClick={() => toggleSort('name')}
-                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200 cursor-pointer select-none hover:text-sage-900"
                     >
                       Guest{sortKey === 'name' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
                     </th>
                     <th
                       onClick={() => toggleSort('attending')}
-                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200 cursor-pointer select-none hover:text-sage-900"
                     >
                       Status{sortKey === 'attending' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200">
                       Drinker
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200">
                       Allergies
                     </th>
-                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700">
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200">
                       Questions
                     </th>
                     <th
                       onClick={() => toggleSort('submittedAt')}
-                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 cursor-pointer select-none hover:text-sage-900"
+                      className="text-left px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200 cursor-pointer select-none hover:text-sage-900"
                     >
                       Submitted{sortKey === 'submittedAt' ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
                     </th>
-                    <th className="text-right px-6 py-4 text-sm font-semibold text-sage-700">
+                    <th className="text-right px-6 py-4 text-sm font-semibold text-sage-700 dark:text-sage-200">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-sage-100">
+                <tbody className="divide-y divide-sage-100 dark:divide-white/10">
                   {sortedRSVPs.map((rsvp) => (
                     <tr
                       key={rsvp.id}
-                      className="hover:bg-sage-50/50 transition-colors"
+                      className="hover:bg-sage-50/50 dark:hover:bg-night-700/40 transition-colors"
                     >
                       <td className="px-6 py-4">
                         <div>
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-sage-800">
+                            <p className="font-medium text-sage-800 dark:text-cream-100">
                               {rsvp.name}
                             </p>
                             {rsvp.guests.length > 0 && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-sage-100 text-sage-700">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-sage-100 dark:bg-night-600 text-sage-700 dark:text-sage-200">
                                 Party of {rsvp.guests.length + 1}
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-sage-500">{rsvp.email}</p>
+                          <p className="text-sm text-sage-500 dark:text-sage-400">{rsvp.email}</p>
                           {rsvp.guests.length > 0 && (
-                            <ul className="mt-2 space-y-1 border-l-2 border-sage-200 pl-3">
+                            <ul className="mt-2 space-y-1 border-l-2 border-sage-200 dark:border-night-600 pl-3">
                               {rsvp.guests.map((g) => (
                                 <li
                                   key={g.id}
-                                  className="flex items-center gap-2 text-sm text-sage-600"
+                                  className="flex items-center gap-2 text-sm text-sage-600 dark:text-sage-300"
                                 >
                                   <span>{g.name}</span>
                                   <span
@@ -494,22 +494,22 @@ function ManagementDashboard() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sage-600 text-sm">
+                        <span className="text-sage-600 dark:text-sage-300 text-sm">
                           {rsvp.drinker ? 'Yes' : 'No'}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 text-sm max-w-xs truncate">
+                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs truncate">
                           {rsvp.allergies || '—'}
                         </p>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 text-sm max-w-xs truncate">
+                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs truncate">
                           {rsvp.questions || '—'}
                         </p>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-500 text-sm">
+                        <p className="text-sage-500 dark:text-sage-400 text-sm">
                           {formatDate(rsvp.submittedAt)}
                         </p>
                       </td>
@@ -568,7 +568,7 @@ function ManagementDashboard() {
           <button
             onClick={loadRSVPs}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 text-sage-600 hover:text-sage-800 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-sage-600 dark:text-sage-300 hover:text-sage-800 dark:hover:text-cream-100 transition-colors"
           >
             <svg
               className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`}

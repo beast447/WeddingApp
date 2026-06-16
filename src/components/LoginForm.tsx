@@ -26,21 +26,21 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 px-4 pt-20">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 dark:from-night-900 dark:via-night-800 dark:to-night-900 px-4 pt-20">
       <div className="w-full max-w-md">
-        <div className="relative overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 p-8">
+        <div className="relative overflow-hidden bg-white/80 dark:bg-night-800/80 backdrop-blur-sm rounded-3xl shadow-xl ring-1 ring-sage-200/60 dark:ring-white/10 p-8">
           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-sage-100 flex items-center justify-center">
-              <svg className="w-7 h-7 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-sage-100 dark:bg-night-700 flex items-center justify-center">
+              <svg className="w-7 h-7 text-sage-600 dark:text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0-1.105.895-2 2-2s2 .895 2 2m-8 0V7a4 4 0 118 0m-9 4h10a2 2 0 012 2v5a2 2 0 01-2 2H7a2 2 0 01-2-2v-5a2 2 0 012-2z" />
               </svg>
             </div>
-            <h1 className="font-serif text-3xl text-sage-800 mb-1">
+            <h1 className="font-serif text-3xl text-sage-800 dark:text-cream-100 mb-1">
               Admin Login
             </h1>
-            <p className="text-sage-600">
+            <p className="text-sage-600 dark:text-sage-300">
               Sign in to manage RSVPs
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function LoginForm() {
             <div>
               <label 
                 htmlFor="email" 
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Email Address
               </label>
@@ -67,7 +67,7 @@ export default function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                 placeholder="Enter your email"
               />
             </div>
@@ -75,7 +75,7 @@ export default function LoginForm() {
             <div>
               <label 
                 htmlFor="password" 
-                className="block text-sm font-medium text-sage-700 mb-2"
+                className="block text-sm font-medium text-sage-700 dark:text-sage-300 mb-2"
               >
                 Password
               </label>
@@ -85,7 +85,7 @@ export default function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg text-sage-800 dark:text-cream-100 placeholder-sage-400 dark:placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
                 placeholder="Enter your password"
               />
             </div>
@@ -108,7 +108,7 @@ export default function LoginForm() {
         </div>
 
         {/* Footer note */}
-        <p className="text-center text-sage-500 text-sm mt-6">
+        <p className="text-center text-sage-500 dark:text-sage-400 text-sm mt-6">
           This area is restricted to the couple only.
         </p>
       </div>
