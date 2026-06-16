@@ -8,7 +8,7 @@ const quickFacts = [
   {
     label: 'When',
     value: 'August 1st, 2026',
-    sub: 'Ceremony at 4:00 PM',
+    sub: 'Ceremony at 3:00 PM',
     path: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
   },
   {
@@ -19,18 +19,17 @@ const quickFacts = [
   },
   {
     label: 'Dress Code',
-    value: 'Semi-Formal',
-    sub: 'Garden-party attire',
+    value: 'Formal',
+    sub: 'Formal attire requested',
     path: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
   },
 ]
 
 const schedule = [
-  { time: '4:00 PM', title: 'Ceremony', desc: 'Join us as we say "I do."' },
-  { time: '5:00 PM', title: 'Cocktail Hour', desc: 'Drinks, hors d’oeuvres & mingling.' },
+  { time: '3:00 PM', title: 'Ceremony', desc: 'Join us as we say "I do."' },
+  { time: '4:00 PM', title: 'Cocktail Hour', desc: 'Drinks, hors d’oeuvres & mingling.' },
   { time: '6:00 PM', title: 'Dinner & Toasts', desc: 'A seated dinner to celebrate together.' },
-  { time: '8:00 PM', title: 'Dancing', desc: 'Hit the floor with the newlyweds.' },
-  { time: '10:00 PM', title: 'Send-Off', desc: 'A sparkler farewell to end the night.' },
+  { time: '8:00 PM – 10:00 PM', title: 'Dancing', desc: 'Hit the floor with the newlyweds.' },
 ]
 
 const faqs = [
@@ -48,7 +47,7 @@ const faqs = [
   },
   {
     q: 'What should I wear?',
-    a: 'Semi-formal, garden-party attire. Think florals, soft colors, and comfortable shoes for the lawn.',
+    a: 'Formal attire, please — suits and cocktail or evening dresses. Bring a light layer for the outdoor evening.',
   },
   {
     q: 'Is the ceremony indoors or outdoors?',
@@ -174,9 +173,9 @@ export default function Home() {
             <div className="rule-gold-rev" />
           </div>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed mb-4">
-            What started as a chance meeting grew into a friendship, and then into a love we
-            can't wait to celebrate. Through countless adventures, quiet evenings, and a few
-            misadventures along the way, we found our forever in each other.
+            We met on Tinder — a little bit of fate disguised as a swipe. From that very first
+            match, something just clicked, and we've fallen deeper and deeper in love every single
+            day since.
           </p>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed">
             Now we're ready for the biggest adventure yet — and there's no one we'd rather have
