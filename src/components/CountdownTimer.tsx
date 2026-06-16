@@ -8,7 +8,7 @@ interface TimeLeft {
 }
 
 export default function CountdownTimer() {
-  const weddingDate = new Date('2026-08-01T00:00:00')
+  const weddingDate = new Date('2026-08-01T15:00:00')
   
   const calculateTimeLeft = (): TimeLeft => {
     const difference = +weddingDate - +new Date()
