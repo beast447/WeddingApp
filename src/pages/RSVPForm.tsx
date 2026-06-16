@@ -354,38 +354,52 @@ export default function RSVPForm() {
                           </button>
                         </div>
                         {!guest.isChild && (
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updateGuest(index, { drinker: !guest.drinker })
-                            }
-                            aria-pressed={guest.drinker}
-                            title={
-                              guest.drinker
-                                ? 'Drinks alcohol'
-                                : 'Does not drink alcohol'
-                            }
-                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-colors sm:ml-1 ${
-                              guest.drinker
-                                ? 'bg-amber-100 border-amber-300 text-amber-700 dark:bg-amber-500/15 dark:border-amber-500/40 dark:text-amber-300'
-                                : 'bg-cream-50 border-sage-200 text-sage-400 dark:bg-night-700 dark:border-night-600 dark:text-sage-500'
-                            }`}
-                          >
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 22h8M12 15v7M5 3h14l-6 9H11L5 3z"
-                              />
-                            </svg>
-                            <span>Drinks</span>
-                          </button>
+                          <div className="flex items-center gap-2 sm:ml-1">
+                            <span className="text-sm text-sage-500 dark:text-sage-400 whitespace-nowrap">
+                              Alcohol?
+                            </span>
+                            <div className="flex gap-1 bg-cream-50 dark:bg-night-700 border border-sage-200 dark:border-night-600 rounded-lg p-1">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  updateGuest(index, { drinker: true })
+                                }
+                                className={`flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                                  guest.drinker
+                                    ? 'bg-amber-500 text-white'
+                                    : 'text-sage-600 dark:text-sage-300 hover:bg-sage-100 dark:hover:bg-night-600'
+                                }`}
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8 22h8M12 15v7M5 3h14l-6 9H11L5 3z"
+                                  />
+                                </svg>
+                                Drinks
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  updateGuest(index, { drinker: false })
+                                }
+                                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                                  !guest.drinker
+                                    ? 'bg-sage-600 text-white'
+                                    : 'text-sage-600 dark:text-sage-300 hover:bg-sage-100 dark:hover:bg-night-600'
+                                }`}
+                              >
+                                None
+                              </button>
+                            </div>
+                          </div>
                         )}
                         <button
                           type="button"
