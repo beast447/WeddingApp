@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { submitRSVP } from '../lib/api'
+import { submitRSVP, GuestInput } from '../lib/api'
 
 interface FormData {
   name: string
@@ -20,9 +20,21 @@ export default function RSVPForm() {
     drinker: true,
     questions: '',
   })
+  const [additionalGuests, setAdditionalGuests] = useState<GuestInput[]>([])
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+
+  const addGuest = () =>
+    setAdditionalGuests((prev) => [...prev, { name: '', isChild: false }])
+
+  const updateGuest = (index: number, patch: Partial<GuestInput>) =>
+    setAdditionalGuests((prev) =>
+      prev.map((g, i) => (i === index ? { ...g, ...patch } : g))
+    )
+
+  const removeGuest = (index: number) =>
+    setAdditionalGuests((prev) => prev.filter((_, i) => i !== index))
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,6 +57,9 @@ export default function RSVPForm() {
       await submitRSVP({
         ...formData,
         attending: formData.attending == true,
+        additionalGuests: formData.attending
+          ? additionalGuests.filter((g) => g.name.trim() !== '')
+          : [],
       })
       setSubmitted(true)
     } catch (err) {
@@ -265,6 +280,104 @@ export default function RSVPForm() {
                 </label>
               </div>
             </div>
+
+            {/* Additional Guests */}
+            {formData.attending && (
+              <div>
+                <label className="block text-sm font-medium text-sage-700 mb-2">
+                  Additional Guests
+                </label>
+                <p className="text-sage-500 text-sm mb-3">
+                  Add anyone joining you (spouse, partner, children).
+                </p>
+
+                {additionalGuests.length > 0 && (
+                  <div className="space-y-3 mb-3">
+                    {additionalGuests.map((guest, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col sm:flex-row gap-2 sm:items-center"
+                      >
+                        <input
+                          type="text"
+                          value={guest.name}
+                          onChange={(e) =>
+                            updateGuest(index, { name: e.target.value })
+                          }
+                          className="flex-1 px-4 py-2 bg-cream-50 border border-sage-200 rounded-lg text-sage-800 placeholder-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-transparent transition-all"
+                          placeholder={`Guest ${index + 1} full name`}
+                        />
+                        <div className="flex gap-1 bg-cream-50 border border-sage-200 rounded-lg p-1">
+                          <button
+                            type="button"
+                            onClick={() => updateGuest(index, { isChild: false })}
+                            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                              !guest.isChild
+                                ? 'bg-sage-600 text-white'
+                                : 'text-sage-600 hover:bg-sage-100'
+                            }`}
+                          >
+                            Adult
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => updateGuest(index, { isChild: true })}
+                            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                              guest.isChild
+                                ? 'bg-sage-600 text-white'
+                                : 'text-sage-600 hover:bg-sage-100'
+                            }`}
+                          >
+                            Child
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeGuest(index)}
+                          title="Remove guest"
+                          className="px-3 py-2 text-sage-400 hover:text-rose-600 transition-colors"
+                        >
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={addGuest}
+                  className="inline-flex items-center gap-2 px-4 py-2 border border-dashed border-sage-300 rounded-lg text-sage-600 hover:bg-sage-50 hover:border-sage-400 transition-colors text-sm font-medium"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  <span>Add guest</span>
+                </button>
+              </div>
+            )}
 
             {/* Allergies Field */}
             <div>

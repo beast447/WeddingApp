@@ -27,6 +27,11 @@ export async function logout(): Promise<void> {
   clearToken()
 }
 
+export interface GuestInput {
+  name: string
+  isChild: boolean
+}
+
 export interface RSVPPayload {
   name: string
   email: string
@@ -34,6 +39,7 @@ export interface RSVPPayload {
   allergies: string
   drinker: boolean
   questions: string
+  additionalGuests: GuestInput[]
 }
 
 export async function submitRSVP(data: RSVPPayload): Promise<void> {
@@ -45,6 +51,12 @@ export async function submitRSVP(data: RSVPPayload): Promise<void> {
   if (!res.ok) throw new Error('Failed to submit RSVP')
 }
 
+export interface Guest {
+  id: string
+  name: string
+  isChild: boolean
+}
+
 export interface RSVP {
   id: string
   name: string
@@ -54,6 +66,7 @@ export interface RSVP {
   drinker: boolean
   questions: string
   submittedAt: string
+  guests: Guest[]
 }
 
 export async function fetchRSVPs(): Promise<RSVP[]> {

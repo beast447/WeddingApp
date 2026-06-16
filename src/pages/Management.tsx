@@ -100,6 +100,9 @@ function ManagementDashboard() {
     attending: rsvps.filter((r) => r.attending).length,
     notAttending: rsvps.filter((r) => !r.attending).length,
     drinkers: rsvps.filter((r) => r.attending && r.drinker).length,
+    attendingHeadcount: rsvps
+      .filter((r) => r.attending)
+      .reduce((sum, r) => sum + 1 + r.guests.length, 0),
   }
 
   const estimatedBeers = stats.drinkers * BEERS_PER_GUEST
@@ -197,6 +200,9 @@ function ManagementDashboard() {
                 <p className="text-sage-500 text-sm">Attending</p>
                 <p className="font-serif text-3xl text-green-700">
                   {stats.attending}
+                </p>
+                <p className="text-sage-500 text-xs mt-0.5">
+                  {stats.attendingHeadcount} total guests
                 </p>
               </div>
             </div>
@@ -423,8 +429,38 @@ function ManagementDashboard() {
                     >
                       <td className="px-6 py-4">
                         <div>
-                          <p className="font-medium text-sage-800">{rsvp.name}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-sage-800">
+                              {rsvp.name}
+                            </p>
+                            {rsvp.guests.length > 0 && (
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-sage-100 text-sage-700">
+                                Party of {rsvp.guests.length + 1}
+                              </span>
+                            )}
+                          </div>
                           <p className="text-sm text-sage-500">{rsvp.email}</p>
+                          {rsvp.guests.length > 0 && (
+                            <ul className="mt-2 space-y-1 border-l-2 border-sage-200 pl-3">
+                              {rsvp.guests.map((g) => (
+                                <li
+                                  key={g.id}
+                                  className="flex items-center gap-2 text-sm text-sage-600"
+                                >
+                                  <span>{g.name}</span>
+                                  <span
+                                    className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${
+                                      g.isChild
+                                        ? 'bg-amber-100 text-amber-700'
+                                        : 'bg-sage-100 text-sage-600'
+                                    }`}
+                                  >
+                                    {g.isChild ? 'Child' : 'Adult'}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       </td>
                       <td className="px-6 py-4">
