@@ -5,9 +5,9 @@ import { submitRSVP } from '../lib/api'
 interface FormData {
   name: string
   email: string
-  attending: string
+  attending: boolean
   allergies: string
-  drinker: string
+  drinker: boolean
   questions: string
 }
 
@@ -15,9 +15,9 @@ export default function RSVPForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    attending: '',
+    attending: false,
     allergies: '',
-    drinker: '',
+    drinker: true,
     questions: '',
   })
   const [loading, setLoading] = useState(false)
@@ -28,7 +28,12 @@ export default function RSVPForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+
+    let finalValue: string | boolean = value
+    if (value === "yes") finalValue = true
+    if (value === "no") finalValue = false
+
+    setFormData((prev) => ({ ...prev, [name]: finalValue }))
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -39,7 +44,7 @@ export default function RSVPForm() {
     try {
       await submitRSVP({
         ...formData,
-        attending: formData.attending === 'yes',
+        attending: formData.attending == true,
       })
       setSubmitted(true)
     } catch (err) {
@@ -76,7 +81,7 @@ export default function RSVPForm() {
               Thank You!
             </h2>
             <p className="text-sage-600 mb-6">
-              {formData.attending === 'yes'
+              {formData.attending === true
                 ? "We're so excited you'll be joining us! We can't wait to celebrate with you."
                 : "We're sorry you can't make it, but we appreciate you letting us know."}
             </p>
@@ -183,7 +188,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="attending"
                       value="yes"
-                      checked={formData.attending === 'yes'}
+                      checked={formData.attending === true}
                       onChange={handleChange}
                       required
                       className="sr-only peer"
@@ -202,7 +207,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="attending"
                       value="no"
-                      checked={formData.attending === 'no'}
+                      checked={formData.attending === false}
                       onChange={handleChange}
                       className="sr-only peer"
                     />
@@ -228,7 +233,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="drinker"
                       value="yes"
-                      checked={formData.drinker === 'yes'}
+                      checked={formData.drinker === true}
                       onChange={handleChange}
                       required
                       className="sr-only peer"
@@ -247,7 +252,7 @@ export default function RSVPForm() {
                       type="radio"
                       name="drinker"
                       value="no"
-                      checked={formData.drinker === 'no'}
+                      checked={formData.drinker === false}
                       onChange={handleChange}
                       className="sr-only peer"
                     />
