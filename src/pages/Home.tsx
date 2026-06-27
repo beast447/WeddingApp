@@ -200,10 +200,11 @@ export default function Home() {
             <div className="rule-gold-rev" />
           </div>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed mb-4">
-           First paragraph
+           Our story has been one of unmeasurable love, growth, patience, laughter, and support. If you asked either of us, I think we'd both say that we are still absolutely flabbergasted to have made it this far. From the first date to our now wedding day, we have been so thankful to share our unwavering love and happiness with you.
           </p>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed">
-            Second Paragraph
+            Everyone has seen that one movie, read that one book, or heard that one song and wished for a love like that one;
+            we are truly blessed to have found that love within each other. From traveling, going through life's big changes, and becoming parents to the two sweetest (and cutest) kitties, every day has been a new start to the greatest adventure ever taken. 
           </p>
         </div>
       </section>
