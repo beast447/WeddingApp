@@ -11,6 +11,7 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/rsvp', label: 'RSVP' },
+    { path: 'https://www.myregistry.com/wedding-registry/stephanie-buckland-and-trevor-king-check-virginia/5341299/giftlist', label: 'Registry' },
   ]
 
   return (
@@ -31,11 +32,10 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium tracking-wide uppercase transition-colors ${
-                  isActive(link.path)
+                className={`text-sm font-medium tracking-wide uppercase transition-colors ${isActive(link.path)
                     ? 'text-sage-700 dark:text-cream-100 border-b-2 border-gold-500 pb-1'
                     : 'text-sage-600 dark:text-sage-300 hover:text-sage-800 dark:hover:text-cream-100'
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -46,34 +46,34 @@ export default function Navbar() {
           {/* Mobile controls */}
           <div className="flex items-center gap-1 md:hidden">
             <ThemeToggle />
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-sage-700 dark:text-sage-200 hover:text-sage-900 dark:hover:text-cream-100 transition-colors"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-sage-700 dark:text-sage-200 hover:text-sage-900 dark:hover:text-cream-100 transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -86,11 +86,10 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm font-medium tracking-wide uppercase transition-colors ${
-                    isActive(link.path)
+                  className={`text-sm font-medium tracking-wide uppercase transition-colors ${isActive(link.path)
                       ? 'text-sage-700 dark:text-cream-100'
                       : 'text-sage-600 dark:text-sage-300 hover:text-sage-800 dark:hover:text-cream-100'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>

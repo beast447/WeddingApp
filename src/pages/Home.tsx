@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
-import PhotoGallery from '../components/PhotoGallery'
 import newHarvest from '../assets/newharvest.png'
+import PhotoGallery from "../components/PhotoGallery"
 
 const quickFacts = [
   {
@@ -19,8 +19,8 @@ const quickFacts = [
   },
   {
     label: 'Dress Code',
-    value: 'Formal',
-    sub: 'Formal attire requested',
+    value: 'Semi-Formal',
+    sub: 'Semi-Formal attire requested',
     path: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
   },
 ]
@@ -55,7 +55,7 @@ const schedule = [
 const faqs = [
   {
     q: 'When should I RSVP by?',
-    a: 'Please RSVP by July 1st, 2026 so we can finalize our headcount with the venue.',
+    a: 'Please RSVP by July 10th, 2026 so we can finalize our headcount with the venue.',
   },
   {
     q: 'Can I bring a plus-one?',
@@ -67,7 +67,7 @@ const faqs = [
   },
   {
     q: 'What should I wear?',
-    a: 'Formal attire, please — suits and cocktail or evening dresses.',
+    a: 'Dust off your favorite celebration outfits! Think cocktail-length dresses, stylish separates, or a sharp suit and tie (or no tie, your choice!). Bring your dancing shoes, but leave the jeans at home.',
   },
   {
     q: 'Is the ceremony indoors or outdoors?',
@@ -152,13 +152,16 @@ export default function Home() {
             </svg>
           </Link>
 
-          {/* Scroll hint */}
-          <div className="mt-12 flex justify-center">
-            <a href="#details" aria-label="Scroll to details" className="text-sage-400 dark:text-sage-500 animate-float">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
+          <div className="mt-4 flex justify-center">
+          <Link
+            to="https://www.myregistry.com/wedding-registry/stephanie-buckland-and-trevor-king-check-virginia/5341299/giftlist"
+            className="btn-shine inline-flex items-center gap-2 px-8 py-4 bg-sage-600 hover:bg-sage-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <span>Wedding Registry</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
           </div>
         </div>
       </section>
@@ -197,19 +200,17 @@ export default function Home() {
             <div className="rule-gold-rev" />
           </div>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed mb-4">
-            We met on Tinder — a little bit of fate disguised as a swipe. From that very first
-            match, something just clicked, and we've fallen deeper and deeper in love every single
-            day since.
+           First paragraph
           </p>
           <p className="text-sage-600 dark:text-sage-300 text-base sm:text-lg leading-relaxed">
-            Now we're ready for the biggest adventure yet — and there's no one we'd rather have
-            by our side than the people who shaped us. Thank you for being part of our journey.
+            Second Paragraph
           </p>
         </div>
       </section>
 
       {/* Photo Gallery */}
       <PhotoGallery />
+
 
       {/* Schedule / Timeline */}
       <section className="py-16 sm:py-20 px-4 bg-white dark:bg-night-900">
@@ -333,16 +334,6 @@ export default function Home() {
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Where to stay */}
-          <div className="hover-lift bg-white dark:bg-night-800 rounded-2xl p-6 sm:p-8 shadow-lg ring-1 ring-sage-100 dark:ring-white/10">
-            <h3 className="font-serif text-2xl text-sage-800 dark:text-cream-100 mb-2">Where to Stay</h3>
-            <p className="text-sage-600 dark:text-sage-300 leading-relaxed">
-              Floyd and Christiansburg both offer cozy inns, hotels, and cabins a short drive
-              from the venue. We recommend booking early, as summer weekends fill up quickly.
-              A detailed list of recommended accommodations is coming soon!
-            </p>
           </div>
         </div>
       </section>
