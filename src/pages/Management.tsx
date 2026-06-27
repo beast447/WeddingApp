@@ -499,12 +499,12 @@ function ManagementDashboard() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs truncate">
+                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs whitespace-normal break-words">
                           {rsvp.allergies || '—'}
                         </p>
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs truncate">
+                        <p className="text-sage-600 dark:text-sage-300 text-sm max-w-xs whitespace-normal break-words">
                           {rsvp.questions || '—'}
                         </p>
                       </td>
