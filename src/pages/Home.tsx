@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CountdownTimer from '../components/CountdownTimer'
 import newHarvest from '../assets/newharvest.png'
+import mooseLodge from '../assets/WeddingPhotos/reception.jpeg'
 import PhotoGallery from "../components/PhotoGallery"
 
 const quickFacts = [
@@ -311,10 +312,12 @@ export default function Home() {
           {/* Reception Venue */}
           <div className="hover-lift bg-white dark:bg-night-800 rounded-2xl p-6 sm:p-8 shadow-lg ring-1 ring-sage-100 dark:ring-white/10 mb-6">
             <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
-              <div className="w-full md:w-64 h-48 shrink-0 rounded-xl bg-gradient-to-br from-sage-100 to-cream-100 dark:from-night-700 dark:to-night-600 flex items-center justify-center ring-1 ring-sage-200/60">
-                <svg className="w-16 h-16 text-sage-500 dark:text-gold-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 11h.01M15 11h.01" />
-                </svg>
+             <div className="overflow-hidden rounded-xl shadow-md ring-1 ring-sage-200/60 shrink-0">
+                <img
+                  src={mooseLodge}
+                  alt="A picture of New Harvest Ministries"
+                  className="w-full md:w-64 h-48 object-cover transition-transform duration-500 hover:scale-105"
+                />
               </div>
               <div className="text-center md:text-left">
                 <p className="text-gold-600 dark:text-gold-400 text-xs uppercase tracking-[0.2em] mb-1">The Reception</p>
